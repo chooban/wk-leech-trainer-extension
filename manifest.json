@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "WK Leech Trainer",
+  "version": "0.1",
+  "description": "Study those leeches! Squash 'em real good!",
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.wanikani.com/dashboard",
+        "*://www.wanikani.com/kanji*",
+        "*://www.wanikani.com/vocabulary*",
+        "*://www.wanikani.com/radicals*"
+      ],
+      "css": [
+        "leech-trainer.css"
+      ],
+      "js": [
+        "leech-trainer.js"
+      ]
+    }
+  ]
+}
