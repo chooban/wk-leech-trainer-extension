@@ -16,7 +16,7 @@
         "leech-trainer.css"
       ],
       "js": [
-        "leech-trainer.js"
+        "dist/leech.js"
       ]
     }
   ]

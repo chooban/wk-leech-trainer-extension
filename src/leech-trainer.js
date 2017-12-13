@@ -1,7 +1,7 @@
 const elem = (domString) => {
   const html = new DOMParser().parseFromString(domString, 'text/html');
   return html.body.firstChild;
-}
+};
 
 const leechBadgeDom = `
 <li class="reviews leech-badge">
