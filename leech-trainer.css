@@ -1,3 +1,7 @@
+.bigredborder {
+  border: 5px solid red;
+}
+
 .noselect {
     -webkit-touch-callout: none;
     -webkit-user-select: none;

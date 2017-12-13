@@ -6,6 +6,7 @@
   "content_scripts": [
     {
       "matches": [
+        "*://www.wanikani.com/",
         "*://www.wanikani.com/dashboard",
         "*://www.wanikani.com/kanji*",
         "*://www.wanikani.com/vocabulary*",
