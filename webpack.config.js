@@ -14,15 +14,31 @@ module.exports = {
       use: [
         { loader: 'babel-loader' }
       ]
+    }, {
+      test: /\.html$/,
+      exclude: /node_modles/,
+      use: [
+        {
+          loader: 'raw-loader'
+        }
+      ]
     }]
   },
   resolve: {
     extensions: ['.js'],
     modules: [
-      path.join(__dirname, 'src')
+      path.join(__dirname, 'src'),
+      path.join(__dirname, 'node_modules')
     ]
   },
   plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      compress: {
+        warnings: false
+      },
+      comments: false
+    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     })

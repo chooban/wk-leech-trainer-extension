@@ -1,5 +1,9 @@
-.bigredborder {
-  border: 5px solid red;
+.leeches {
+    cursor: pointer;
+}
+
+.leeches div.popover {
+    display: none !important;
 }
 
 .noselect {
@@ -544,14 +548,6 @@ section.ss_active .character-item:hover a li {
     left: 0;
     right: 0;
     top: 6em;
-}
-
-.leech-badge {
-    cursor: pointer;
-}
-
-.leech-badge div.popover {
-    display: none !important;
 }
 
 #ss_quiz .quiz-progress {
