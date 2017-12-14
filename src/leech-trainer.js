@@ -1,6 +1,7 @@
 import leechBadgeDom from './leech-badge.html';
 import * as wk from './wk-account';
 // import quizPopupDom from './quiz-popup.html';
+import * as leechStore from './leech-store';
 
 const elem = (domString) => {
   const html = new DOMParser().parseFromString(domString, 'text/html');
@@ -13,10 +14,8 @@ if (reviewsBadge) {
   reviewsBadge.parentElement.appendChild(elem(leechBadgeDom));
 
   wk.getApiKey()
-    .then((key) => fetch(`https://wanikanitools-golang.curiousattemptbunny.com/leeches/lesson?api_key=${key}`))
-    .then((leeches) => leeches.text())
-    .then((l) => {
-      const leeches = JSON.parse(l);
-      document.querySelector('span.available_leeches').innerHTML = leeches.leeches_available;
+    .then(leechStore.refresh)
+    .then(() => {
+      document.querySelector('span.available_leeches').innerHTML = leechStore.count();
     });
 }
