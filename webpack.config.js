@@ -32,13 +32,13 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      },
-      comments: false
-    }),
+    //new webpack.optimize.UglifyJsPlugin({
+      //sourceMap: true,
+      //compress: {
+        //warnings: false
+      //},
+      //comments: false
+    //}),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     })

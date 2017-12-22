@@ -10,7 +10,7 @@ const refresh = (apiKey) => (
 
 const count = () => leechData.leeches_available;
 
-module.exports = {
+export {
   refresh,
   count
 };
