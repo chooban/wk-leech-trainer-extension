@@ -1,7 +1,9 @@
 let leechData;
 
+// eslint-disable-next-line
 const refresh = (apiKey) => (
-  fetch(`https://wanikanitools-golang.curiousattemptbunny.com/leeches/lesson?api_key=${apiKey}`)
+  // eslint-disable-next-line
+  fetch(__LESSONS_URL__.replace(/apiKey/, apiKey))
     .then((r) => r.text())
     .then((l) => {
       leechData = JSON.parse(l);

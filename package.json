@@ -6,7 +6,9 @@
   "author": "Ross Hendry <rhendry@googlemail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --watch --display-error-details --progress --colors",
+    "build": "webpack --watch --display-error-details --progress --colors --config=webpack.dev.config.js",
+    "api": "json-server -c api/config.json api/db.json",
+    "bundle": "webpack --display-error-details --progress --colors --config=webpack.config.js",
     "style": "eslint src/"
   },
   "devDependencies": {
@@ -22,6 +24,7 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.5.1",
+    "json-server": "0.12.1",
     "raw-loader": "0.5.1",
     "webpack": "^3.10.0"
   }

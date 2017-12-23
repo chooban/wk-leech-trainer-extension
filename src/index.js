@@ -14,7 +14,7 @@ const reviewsBadge = document.querySelector('ul.nav > li.reviews');
 if (reviewsBadge) {
   const leechBadgeNode = reviewsBadge.parentElement.appendChild(elem(leechBadgeDom));
   const availableLeeches = leechBadgeNode.querySelector('.available_leeches');
-  const observer = new MutationObserver(observers.leechCount);
+  const observer = new MutationObserver(observers.leechCount(leechBadgeNode));
   observer.observe(availableLeeches, {
     characterData: false,
     attributes: false,

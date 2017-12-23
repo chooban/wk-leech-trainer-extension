@@ -1,9 +1,8 @@
-const leechCount = (mutations) => {
+const leechCount = (node) => (mutations) => {
   const mutation = mutations[0];
-  const node = mutation.target;
-  const leechCount = Number(mutation.target.innerText);
+  const count = Number(mutation.target.innerText);
 
-  console.log('Mutations: ' + mutations);
+  console.log('leech count: ' + count);
 };
 
 export {
