@@ -220,6 +220,10 @@ section.ss_active .character-item:hover a li {
     font-size: 2em;
 }
 
+#ss_quiz .hidden {
+  display: none;
+}
+
 #ss_quiz * {
     text-align: center;
 }
@@ -587,4 +591,8 @@ section.ss_active .character-item:hover a li {
     bottom: 0;
     right: 0;
     z-index: 999;
+}
+
+.ss_blur {
+  filter: blur(20px);
 }
