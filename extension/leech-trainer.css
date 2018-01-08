@@ -584,7 +584,7 @@ section.ss_active .character-item:hover a li {
     }
 }
 
-#ss_quiz_abort {
+.ss_quiz_abort {
     position: fixed;
     top: 0;
     left: 0;

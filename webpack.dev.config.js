@@ -33,7 +33,7 @@ module.exports = {
     // eslint-disable-next-line
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
-      __LESSONS_URL__: JSON.stringify('https://lessons.test/lessons')
+      __LESSONS_URL__: JSON.stringify('https://curious-bunny-wk-stats.test/lessons')
     })
   ],
   devtool: 'sourcemap'
