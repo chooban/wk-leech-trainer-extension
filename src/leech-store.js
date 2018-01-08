@@ -11,8 +11,10 @@ const refresh = (apiKey) => (
 );
 
 const count = () => leechData.leeches_available;
+const lessonItems = () => leechData.leech_lesson_items;
 
 export {
   refresh,
-  count
+  count,
+  lessonItems
 };

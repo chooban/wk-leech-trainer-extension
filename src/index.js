@@ -1,4 +1,4 @@
-import leechBadgeDom from './leech-badge.html';
+import leechBadgeDom from './html/leech-badge.html';
 import elem from './element';
 import * as wk from './wk-account';
 import * as leechStore from './leech-store';
@@ -21,7 +21,7 @@ if (reviewsBadge) {
 
   const observer = new MutationObserver(leechCountObserver(
     leechBadgeNode,
-    () => popup.show()
+    () => popup.show(leechStore.lessonItems())
   ));
 
   observer.observe(availableLeeches, {
