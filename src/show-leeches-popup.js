@@ -1,10 +1,15 @@
 import quizPopupDom from './quiz-popup.html';
 import elem from './element';
 
+NodeList.prototype.forEach = Array.prototype.forEach;
+
 class Popup {
   constructor() {
     this.quizPopupNode = document.body.appendChild(elem(quizPopupDom));
     this.abortNode = this.quizPopupNode.appendChild(elem('<div class="ss_quiz_abort hidden"/>'));
+  }
+  onHide(fn) {
+    this.onHide = fn;
   }
 
   show() {
@@ -23,6 +28,7 @@ class Popup {
     this.abortNode.classList.add('hidden');
     document.querySelectorAll('.navbar, #search, .dashboard, footer')
       .forEach((el) => el.classList.remove('ss_blur'));
+    this.onHide.apply(this);
   }
 }
 

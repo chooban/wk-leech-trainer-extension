@@ -5,14 +5,20 @@ import * as leechStore from './leech-store';
 import leechCountObserver from './leech-count-observer';
 import Popup from './show-leeches-popup';
 
-NodeList.prototype.forEach = Array.prototype.forEach;
-
 const reviewsBadge = document.querySelector('ul.nav > li.reviews');
 
 if (reviewsBadge) {
   const leechBadgeNode = reviewsBadge.parentElement.appendChild(elem(leechBadgeDom));
-  const popup = new Popup();
   const availableLeeches = leechBadgeNode.querySelector('.available_leeches');
+  const updateLeeches = () => wk.getApiKey()
+    .then(leechStore.refresh)
+    .then(() => {
+      availableLeeches.textContent = leechStore.count();
+    });
+
+  const popup = new Popup();
+  popup.onHide(updateLeeches);
+
   const observer = new MutationObserver(leechCountObserver(
     leechBadgeNode,
     () => popup.show()
@@ -25,9 +31,5 @@ if (reviewsBadge) {
     subtree: false
   });
 
-  wk.getApiKey()
-    .then(leechStore.refresh)
-    .then(() => {
-      availableLeeches.textContent = leechStore.count();
-    });
+  updateLeeches();
 }
