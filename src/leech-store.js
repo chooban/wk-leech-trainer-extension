@@ -3,7 +3,7 @@ let leechData;
 // eslint-disable-next-line
 const refresh = (apiKey) => (
   // eslint-disable-next-line
-  fetch(__LESSONS_URL__.replace(/apiKey/, apiKey))
+  fetch(__LESSONS_URL__ + apiKey)
     .then((r) => r.text())
     .then((l) => {
       leechData = JSON.parse(l);

@@ -7,6 +7,12 @@
     "webRequest",
     "*://www.wanikani.com/*"
   ],
+  "page_action": {
+    "default_title": "Wanikani Leech Trainer"
+  },
+  "background": {
+    "scripts": [ "background.js" ]
+  },
   "content_scripts": [
     {
       "matches": [

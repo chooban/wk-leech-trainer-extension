@@ -32,4 +32,5 @@ if (reviewsBadge) {
   });
 
   updateLeeches();
+  chrome.runtime.sendMessage({ action: 'displayPageIcon' });
 }

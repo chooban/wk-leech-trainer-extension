@@ -31,6 +31,4 @@ function getApiKey() {
   });
 }
 
-export {
-  getApiKey
-};
+export { getApiKey };
