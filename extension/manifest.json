@@ -5,10 +5,17 @@
   "description": "Study those leeches! Squash 'em real good!",
   "permissions": [
     "webRequest",
-    "*://www.wanikani.com/*"
+    "*://www.wanikani.com/*",
+    "storage"
   ],
   "page_action": {
-    "default_title": "Wanikani Leech Trainer"
+    "browser_style": true,
+    "chrome_style": true,
+    "default_title": "Wanikani Leech Trainer",
+    "default_popup": "options/options.html"
+  },
+  "options_ui": {
+    "page": "options/options.html"
   },
   "background": {
     "scripts": [ "background.js" ]
