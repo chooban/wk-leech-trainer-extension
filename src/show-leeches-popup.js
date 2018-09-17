@@ -11,6 +11,7 @@ class Popup {
     this.onHide = () => {};
     this.quiz = undefined;
   }
+
   onHide(fn) {
     this.onHide = fn;
   }

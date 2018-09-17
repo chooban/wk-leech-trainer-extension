@@ -11,7 +11,8 @@
   },
   "globals": {
     "browser": true,
-    "chrome": true
+    "chrome": true,
+    "storage": true
   },
   "plugins": [
   ],

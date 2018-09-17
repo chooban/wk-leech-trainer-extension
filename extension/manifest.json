@@ -18,7 +18,7 @@
     "page": "options/options.html"
   },
   "background": {
-    "scripts": [ "background.js" ]
+    "scripts": [ "dist/background.js" ]
   },
   "content_scripts": [
     {

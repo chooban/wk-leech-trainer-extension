@@ -5,9 +5,29 @@ import * as leechStore from './leech-store';
 import leechCountObserver from './leech-count-observer';
 import Popup from './show-leeches-popup';
 
-const reviewsBadge = document.querySelector('ul.nav > li.reviews');
+function readAndRun() {
+  chrome.storage.sync.get({
+    showLeechCount: false
+  }, main);
+}
 
-if (reviewsBadge) {
+chrome.runtime.onMessage.addListener((request) => {
+  if (request.action === 'settingsUpdated') {
+    readAndRun();
+  }
+});
+
+export default function main(settings) {
+  if (!settings.showLeechCount) {
+    const leechBadge = document.querySelector('ul.nav > li.leeches');
+    if (leechBadge) {
+      leechBadge.remove();
+    }
+
+    return;
+  }
+
+  const reviewsBadge = document.querySelector('ul.nav > li.reviews');
   const leechBadgeNode = reviewsBadge.parentElement.appendChild(elem(leechBadgeDom));
   const availableLeeches = leechBadgeNode.querySelector('.available_leeches');
   const updateLeeches = () => wk.getApiKey()
@@ -34,3 +54,5 @@ if (reviewsBadge) {
   updateLeeches();
   chrome.runtime.sendMessage({ action: 'displayPageIcon' });
 }
+
+readAndRun();

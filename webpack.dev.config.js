@@ -1,11 +1,16 @@
 const path = require('path');
 const webpack = require('webpack');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    leech: './src/index.js',
+    background: './src/background.js',
+    options: './src/options.js'
+  },
   output: {
     path: path.resolve(__dirname, 'extension/dist'),
-    filename: 'leech.js'
+    filename: '[name].js'
   },
   module: {
     rules: [{
@@ -35,6 +40,8 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('production'),
       __LESSONS_URL__: JSON.stringify('https://wk-stats-staging.herokuapp.com/leeches/lesson?api_key=')
     })
+    // new BundleAnalyzerPlugin()
   ],
-  devtool: 'sourcemap'
+  devtool: 'sourcemap',
+  mode: 'development'
 };

@@ -1,9 +1,7 @@
-const config = require('./webpack.dev.config');
 const webpack = require('webpack');
+const config = require('./webpack.dev.config');
 
-config.plugins.push(new webpack.optimize.UglifyJsPlugin({
-  minimize: true
-}));
+config.mode = 'production';
 
 config.plugins.push(new webpack.DefinePlugin({
   // eslint-disable-next-line
