@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "WK Leech Trainer",
-  "version": "0.1",
+  "version": "0.2",
   "description": "Study those leeches! Squash 'em real good!",
   "permissions": [
     "webRequest",

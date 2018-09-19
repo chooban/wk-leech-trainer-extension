@@ -17,6 +17,11 @@ chrome.runtime.onMessage.addListener((request) => {
   }
 });
 
+function displayIcon() {
+  chrome.runtime.sendMessage({ action: 'displayPageIcon' });
+  setTimeout(displayIcon, 1000);
+}
+
 export default function main(settings) {
   if (!settings.showLeechCount) {
     const leechBadge = document.querySelector('ul.nav > li.leeches');
@@ -52,7 +57,7 @@ export default function main(settings) {
   });
 
   updateLeeches();
-  chrome.runtime.sendMessage({ action: 'displayPageIcon' });
 }
 
 readAndRun();
+displayIcon();
