@@ -18,7 +18,7 @@
     "page": "options/options.html"
   },
   "background": {
-    "scripts": [ "dist/background.js" ]
+    "scripts": [ "background.js" ]
   },
   "content_scripts": [
     {
@@ -33,7 +33,7 @@
         "leech-trainer.css"
       ],
       "js": [
-        "dist/leech.js"
+        "leech.js"
       ]
     }
   ]

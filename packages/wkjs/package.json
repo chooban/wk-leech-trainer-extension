@@ -1,0 +1,11 @@
+{
+  "name": "@chooban/wkjs",
+  "version": "1.0.0",
+  "description": "WaniKani API",
+  "main": "index.js",
+  "author": "Ross Hendry (rhendry@googlemail.com)",
+  "license": "MIT",
+  "dependencies": {
+    "lodash.groupby": "4.6.0"
+  }
+}

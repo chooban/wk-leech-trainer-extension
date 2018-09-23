@@ -1,7 +1,7 @@
-const path = require('path');
-const webpack = require('webpack');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const WriteFilePlugin = require('write-file-webpack-plugin');
+const path = require('path')
+const webpack = require('webpack')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const WriteFilePlugin = require('write-file-webpack-plugin')
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
@@ -17,13 +17,22 @@ module.exports = {
   module: {
     rules: [{
       test: /\.js$/,
-      exclude: /node_modules/,
-      use: [{
-        loader: 'babel-loader'
-      }]
+      exclude: /node_modules\/(?!@(chooban))/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            '@babel/preset-env'
+          ],
+          plugins: [
+            '@babel/plugin-proposal-object-rest-spread',
+            '@babel/plugin-transform-regenerator',
+            '@babel/plugin-transform-runtime'
+          ]
+        }
+      }
     }, {
       test: /\.html$/,
-      exclude: /node_modles/,
       use: [{
         loader: 'raw-loader'
       }]
@@ -50,4 +59,4 @@ module.exports = {
   ],
   devtool: 'sourcemap',
   mode: 'development'
-};
+}

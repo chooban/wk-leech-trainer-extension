@@ -1,3 +1,4 @@
+import wkjs from '@chooban/wkjs'
 import leechBadgeDom from './html/leech-badge.html'
 import elem from './element'
 import * as wk from './wk-account'
@@ -22,41 +23,48 @@ function displayIcon() {
   setTimeout(displayIcon, 1000)
 }
 
-export default function main(settings) {
-  if (!settings.showLeechCount) {
+function leechCount(show) {
+  if (!show) {
     const leechBadge = document.querySelector('ul.nav > li.leeches')
     if (leechBadge) {
       leechBadge.remove()
     }
+  } else {
+    const reviewsBadge = document.querySelector('ul.nav > li.reviews')
+    const leechBadgeNode = reviewsBadge.parentElement.appendChild(elem(leechBadgeDom))
+    const availableLeeches = leechBadgeNode.querySelector('.available_leeches')
+    const updateLeeches = () => wk.getApiKey()
+      .then(leechStore.refresh)
+      .then(() => {
+        availableLeeches.textContent = leechStore.count()
+      })
 
-    return
-  }
+    const popup = new Popup()
+    popup.onHide(updateLeeches)
 
-  const reviewsBadge = document.querySelector('ul.nav > li.reviews')
-  const leechBadgeNode = reviewsBadge.parentElement.appendChild(elem(leechBadgeDom))
-  const availableLeeches = leechBadgeNode.querySelector('.available_leeches')
-  const updateLeeches = () => wk.getApiKey()
-    .then(leechStore.refresh)
-    .then(() => {
-      availableLeeches.textContent = leechStore.count()
+    const observer = new MutationObserver(leechCountObserver(
+      leechBadgeNode,
+      () => popup.show(leechStore.lessonItems())
+    ))
+
+    observer.observe(availableLeeches, {
+      characterData: false,
+      attributes: false,
+      childList: true,
+      subtree: false
     })
+    updateLeeches()
+  }
+}
 
-  const popup = new Popup()
-  popup.onHide(updateLeeches)
-
-  const observer = new MutationObserver(leechCountObserver(
-    leechBadgeNode,
-    () => popup.show(leechStore.lessonItems())
-  ))
-
-  observer.observe(availableLeeches, {
-    characterData: false,
-    attributes: false,
-    childList: true,
-    subtree: false
-  })
-
-  updateLeeches()
+export default function main(settings) {
+  leechCount(settings.showLeechCount)
+  wk.getApiKey()
+    .then((key) => {
+      const api = wkjs(key)
+      api.progress()
+        .then((r) => console.log(r))
+    })
 }
 
 readAndRun()
