@@ -11,7 +11,7 @@ module.exports = {
     options: './src/options.js'
   },
   output: {
-    path: path.resolve(__dirname, 'dist/'),
+    path: path.resolve(__dirname, '..', '..', 'dist/'),
     filename: '[name].js'
   },
   module: {
@@ -33,7 +33,7 @@ module.exports = {
     extensions: ['.js'],
     modules: [
       path.join(__dirname, 'src'),
-      path.join(__dirname, 'node_modules')
+      path.join(__dirname, '..', '..', 'node_modules')
     ]
   },
   plugins: [
