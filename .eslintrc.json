@@ -30,6 +30,7 @@
     "class-methods-use-this": "off",
     "no-use-before-define": ["error", {
       "functions": false
-    }]
+    }],
+    "semi": ["error", "never"]
   }
 }
