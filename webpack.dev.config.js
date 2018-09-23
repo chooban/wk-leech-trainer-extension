@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const WriteFilePlugin = require('write-file-webpack-plugin');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
   entry: {
@@ -9,7 +11,7 @@ module.exports = {
     options: './src/options.js'
   },
   output: {
-    path: path.resolve(__dirname, 'extension/dist'),
+    path: path.resolve(__dirname, 'dist/'),
     filename: '[name].js'
   },
   module: {
@@ -39,7 +41,11 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
       __LESSONS_URL__: JSON.stringify('https://wk-stats-staging.herokuapp.com/leeches/lesson?api_key=')
-    })
+    }),
+    new CopyWebpackPlugin([{
+      from: 'extension/'
+    }]),
+    new WriteFilePlugin()
     // new BundleAnalyzerPlugin()
   ],
   devtool: 'sourcemap',
