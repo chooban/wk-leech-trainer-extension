@@ -6,9 +6,9 @@ const WriteFilePlugin = require('write-file-webpack-plugin')
 
 module.exports = {
   entry: {
-    leech: './src/index.js',
+    leech: './src/index.jsx',
     background: './src/background.js',
-    options: './src/options.js'
+    'options/index': './src/options/index.jsx'
   },
   output: {
     path: path.resolve(__dirname, '..', '..', 'dist/'),
@@ -16,7 +16,7 @@ module.exports = {
   },
   module: {
     rules: [{
-      test: /\.js$/,
+      test: /\.jsx?$/,
       exclude: /node_modules\/(?!@(chooban))/,
       use: {
         loader: 'babel-loader',
@@ -27,7 +27,8 @@ module.exports = {
           plugins: [
             '@babel/plugin-proposal-object-rest-spread',
             '@babel/plugin-transform-regenerator',
-            '@babel/plugin-transform-runtime'
+            '@babel/plugin-transform-runtime',
+            ['@babel/plugin-transform-react-jsx', { pragma: 'h' }]
           ]
         }
       }
@@ -39,7 +40,7 @@ module.exports = {
     }]
   },
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.js', '.jsx'],
     modules: [
       path.join(__dirname, 'src'),
       path.join(__dirname, '..', '..', 'node_modules')

@@ -27,7 +27,6 @@ class Popup {
     })
 
     this.quiz = new Quiz(lessons)
-    console.log(this.quiz.items())
   }
 
   hide() {

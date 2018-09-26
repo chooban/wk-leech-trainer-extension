@@ -17,6 +17,9 @@
   "plugins": [
   ],
   "settings": {
+    "react": {
+      "pragma": "h"
+    }
   },
   "extends": ["airbnb"],
   "rules": {
@@ -31,6 +34,9 @@
     "no-use-before-define": ["error", {
       "functions": false
     }],
-    "semi": ["error", "never"]
+    "semi": ["error", "never"],
+    "react/react-in-jsx-scope": 0,
+    "react/prop-types": 0,
+    "jsx-a11y/label-has-for": 0
   }
 }
