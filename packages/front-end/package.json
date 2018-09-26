@@ -43,7 +43,7 @@
     "hotel": "^0.7.6",
     "json-server": "0.12.1",
     "raw-loader": "0.5.1",
-    "webpack": "^4.19.0",
+    "webpack": "^4.20.2",
     "webpack-bundle-analyzer": "^3.0.2",
     "webpack-cli": "^3.1.0",
     "write-file-webpack-plugin": "4.4.0"
