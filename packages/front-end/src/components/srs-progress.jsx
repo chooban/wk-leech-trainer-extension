@@ -18,8 +18,19 @@ class SrsProgress extends Component {
 
   render(props, state) {
     const { levelCounts } = state
+    const styles = {
+      fontSize: '15px',
+      marginTop: '7.5px',
+      marginBottom: 0
+    }
+
     return (
-      <span>{levelCounts.join('/')}</span>
+      <span
+        data-wk-ext
+        style={styles}
+      >
+        {levelCounts.join('/')}
+      </span>
     )
   }
 }

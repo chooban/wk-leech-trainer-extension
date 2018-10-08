@@ -1,6 +1,6 @@
 import cheerio from 'cheerio'
 
-function getApiKey() {
+async function getApiKey() {
   return new Promise((resolve, reject) => {
     let apiKey = localStorage.getItem('apiKey_v2')
     if (typeof apiKey === 'string' && apiKey.length === 36) {

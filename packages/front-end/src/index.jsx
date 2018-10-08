@@ -6,7 +6,7 @@ import * as wk from './wk-account'
 import * as leechStore from './leech-store'
 import leechCountObserver from './leech-count-observer'
 import Popup from './show-leeches-popup'
-import SrsProgress from './srs-progress'
+import SrsProgress from './components/srs-progress'
 
 function readAndRun() {
   chrome.storage.sync.get({
@@ -52,7 +52,7 @@ function leechCount(show) {
   updateLeeches()
 }
 
-function srsProgress(show) {
+async function srsProgress(show) {
   if (!show) {
     const progressNodes = document.querySelectorAll('.srs-progress [data-wk-ext=true]')
     if (progressNodes) {
@@ -61,20 +61,22 @@ function srsProgress(show) {
     return
   }
 
-  wk.getApiKey()
-    .then((key) => {
-      const api = wkjs(key)
-      const apprenticeProgress = document.querySelector('.srs-progress > ul > li#apprentice > span')
-      const apprenticeRoot = apprenticeProgress.appendChild(document.createElement('span'))
-      apprenticeRoot.setAttribute('data-wk-ext', true)
+  const key = await wk.getApiKey()
+  const api = wkjs(key)
+  const apprenticeProgress = document.querySelector('.srs-progress > ul > li#apprentice > span')
 
-      const guruProgress = document.querySelector('.srs-progress > ul > li#guru > span')
-      const guruRoot = guruProgress.appendChild(document.createElement('span'))
-      guruRoot.setAttribute('data-wk-ext', true)
+  const guruProgress = document.querySelector('.srs-progress > ul > li#guru > span')
 
-      render(<SrsProgress api={api} levels={[1, 2, 3, 4]} />, apprenticeRoot)
-      render(<SrsProgress api={api} levels={[5, 6]} />, guruRoot)
-    })
+  render(
+    <SrsProgress api={api} levels={[1, 2, 3, 4]} />,
+    apprenticeProgress,
+    apprenticeProgress.querySelector('[data-wk-ext=true]')
+  )
+  render(
+    <SrsProgress api={api} levels={[5, 6]} />,
+    guruProgress,
+    guruProgress.querySelector('[data-wk-ext=true]')
+  )
 }
 
 export default function main(settings) {
