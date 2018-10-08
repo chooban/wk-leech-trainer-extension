@@ -17,9 +17,9 @@
     "preact": "8.3.1"
   },
   "devDependencies": {
-    "@babel/core": "7.1.0",
+    "@babel/core": "7.1.2",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
-    "@babel/plugin-proposal-decorators": "^7.0.0",
+    "@babel/plugin-proposal-decorators": "^7.1.2",
     "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
     "@babel/plugin-proposal-function-sent": "^7.0.0",
     "@babel/plugin-proposal-json-strings": "^7.0.0",
@@ -32,20 +32,20 @@
     "@babel/plugin-transform-regenerator": "7.0.0",
     "@babel/plugin-transform-runtime": "7.1.0",
     "@babel/preset-env": "^7.0.0",
-    "@babel/runtime": "7.0.0",
-    "babel-loader": "^8.0.0",
+    "@babel/runtime": "7.1.2",
+    "babel-loader": "^8.0.4",
     "copy-webpack-plugin": "4.5.2",
-    "eslint": "^5.6.0",
+    "eslint": "^5.6.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.5.1",
     "hotel": "^0.7.6",
     "json-server": "0.12.1",
     "raw-loader": "0.5.1",
     "webpack": "^4.20.2",
     "webpack-bundle-analyzer": "^3.0.2",
-    "webpack-cli": "^3.1.0",
-    "write-file-webpack-plugin": "4.4.0"
+    "webpack-cli": "^3.1.2",
+    "write-file-webpack-plugin": "4.4.1"
   }
 }
