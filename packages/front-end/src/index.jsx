@@ -52,6 +52,12 @@ function leechCount(show) {
   updateLeeches()
 }
 
+function createTargetNode() {
+  const targetNode = document.createElement('span')
+  targetNode.setAttribute('data-wk-ext', 'true')
+  return targetNode
+}
+
 async function srsProgress(show) {
   if (!show) {
     const progressNodes = document.querySelectorAll('.srs-progress [data-wk-ext=true]')
@@ -63,19 +69,26 @@ async function srsProgress(show) {
 
   const key = await wk.getApiKey()
   const api = wkjs(key)
-  const apprenticeProgress = document.querySelector('.srs-progress > ul > li#apprentice > span')
 
-  const guruProgress = document.querySelector('.srs-progress > ul > li#guru > span')
+  const apprenticeProgress = document.querySelector('.srs-progress > ul > li#apprentice')
+  const apprContainer = apprenticeProgress.querySelector('[data-wk-ext=true]') === null
+    ? apprenticeProgress.insertBefore(createTargetNode(), apprenticeProgress.lastChild)
+    : apprenticeProgress.querySelector('[data-wk-ext=true]')
+
+  const guruProgress = document.querySelector('.srs-progress > ul > li#guru')
+  const guruContainer = guruProgress.querySelector('[data-wk-ext=true]') === null
+    ? guruProgress.insertBefore(createTargetNode(), guruProgress.lastChild)
+    : guruProgress.querySelector('[data-wk-ext=true]')
 
   render(
     <SrsProgress api={api} levels={[1, 2, 3, 4]} />,
     apprenticeProgress,
-    apprenticeProgress.querySelector('[data-wk-ext=true]')
+    apprContainer
   )
   render(
     <SrsProgress api={api} levels={[5, 6]} />,
     guruProgress,
-    guruProgress.querySelector('[data-wk-ext=true]')
+    guruContainer
   )
 }
 
