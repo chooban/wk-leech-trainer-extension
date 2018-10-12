@@ -70,6 +70,25 @@ async function srsProgress(show) {
   const key = await wk.getApiKey()
   const api = wkjs(key)
 
+  const observer = new MutationObserver(() => {
+    const node = document.querySelector('.srs-progress')
+    const { height } = node.getBoundingClientRect()
+    node.style.height = `${height}px`
+    const progressionList = node.querySelector('ul')
+    progressionList.style.height = '100%'
+
+    const categories = progressionList.querySelectorAll('li')
+    for (let i = 0; i < categories.length; i += 1) {
+      categories[i].style.height = '100%'
+      categories[i].style['vertical-align'] = 'top'
+    }
+  })
+
+  observer.observe(document.querySelector('.srs-progress'), {
+    childList: true,
+    subtree: true
+  })
+
   const apprenticeProgress = document.querySelector('.srs-progress > ul > li#apprentice')
   const apprContainer = apprenticeProgress.querySelector('[data-wk-ext=true]') === null
     ? apprenticeProgress.insertBefore(createTargetNode(), apprenticeProgress.lastChild)
