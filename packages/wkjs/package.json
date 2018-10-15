@@ -2,10 +2,19 @@
   "name": "@chooban/wkjs",
   "version": "1.0.0",
   "description": "WaniKani API",
-  "main": "index.js",
+  "main": "dist/index.js",
   "author": "Ross Hendry (rhendry@googlemail.com)",
   "license": "MIT",
+  "scripts": {
+    "build": "babel src/ -d dist"
+  },
   "dependencies": {
     "lodash.groupby": "4.6.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "isomorphic-fetch": "^2.2.1"
   }
 }
