@@ -2,7 +2,6 @@ const path = require('path')
 const webpack = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const WriteFilePlugin = require('write-file-webpack-plugin')
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
   entry: {
@@ -46,17 +45,6 @@ module.exports = {
       path.join(__dirname, '..', '..', 'node_modules')
     ]
   },
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        commons: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendor',
-          chunks: 'all'
-        }
-      }
-    }
-  },
   plugins: [
     // eslint-disable-next-line
     new webpack.DefinePlugin({
@@ -67,7 +55,6 @@ module.exports = {
       from: 'extension/'
     }]),
     new WriteFilePlugin()
-    // new BundleAnalyzerPlugin()
   ],
   devtool: 'sourcemap',
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development'

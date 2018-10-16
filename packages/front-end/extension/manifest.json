@@ -34,8 +34,7 @@
         "leech-trainer.css"
       ],
       "js": [
-        "leech.js",
-        "vendor.js"
+        "leech.js"
       ]
     }
   ]
