@@ -22,7 +22,6 @@ const OptionInput = ({ opt }) => (
               '*://www.wanikani.com/radicals/*'
             ]
           }, (tabs) => {
-            console.log(tabs.map((tab) => tab.id).join())
             tabs.forEach((tab) => chrome.tabs.sendMessage(tab.id, { action: 'settingsUpdated' }))
           })
         })
@@ -54,15 +53,22 @@ const options = [
     configKey: 'showSrsStats',
     label: 'Show SRS stats',
     active: false
+  }, {
+    configKey: 'skipReviewsSummary',
+    label: 'Skip reviews summary before reviews',
+    active: false
   }
 ]
 
 document.addEventListener('DOMContentLoaded', () => {
-  chrome.storage.sync.get({
-    showLeechCount: false,
-    showSrsStats: false
-  },
-  (settings) => {
+  const defaultOptions = options.reduce((acc, opt) => ({
+    ...acc,
+    [opt.configKey]: false
+  }), {})
+
+  console.log(defaultOptions)
+
+  chrome.storage.sync.get(defaultOptions, (settings) => {
     const opts = options.map((o) => ({
       ...o,
       active: settings[o.configKey]

@@ -9,10 +9,7 @@ import Popup from './show-leeches-popup'
 import SrsProgress from './components/srs-progress'
 
 function readAndRun() {
-  chrome.storage.sync.get({
-    showLeechCount: false,
-    showSrsStats: false
-  }, (settings) => {
+  chrome.storage.sync.get((settings) => {
     main(settings)
   })
 }
@@ -71,10 +68,15 @@ async function srsProgress(show) {
   const api = wkjs(key)
 
   const observer = new MutationObserver(() => {
+    // Trying to set the heigh of an ul can be fun! In this instance we want child elements
+    // to expand to the height of the parent, and the parent to be the height of the largest child
+    // element. We know that by adding elements to the first one we'll increase the size of the
+    // child so then we have to set that height on the parent so that other children can inherit it.
     const node = document.querySelector('.srs-progress')
-    const { height } = node.getBoundingClientRect()
-    node.style.height = `${height}px`
     const progressionList = node.querySelector('ul')
+    const { height } = node.getBoundingClientRect()
+
+    node.style.height = `${height}px`
     progressionList.style.height = '100%'
 
     const categories = progressionList.querySelectorAll('li')
@@ -111,9 +113,24 @@ async function srsProgress(show) {
   )
 }
 
+function skipSummary(skip) {
+  const reviewsNode = document.querySelector('ul.nav > li.reviews > a')
+
+  if (!reviewsNode) {
+    return
+  }
+
+  if (skip) {
+    reviewsNode.setAttribute('href', '/review/start')
+  } else {
+    reviewsNode.setAttribute('href', '/review')
+  }
+}
+
 export default function main(settings) {
   leechCount(settings.showLeechCount)
   srsProgress(settings.showSrsStats)
+  skipSummary(settings.skipReviewsSummary)
 }
 
 chrome.runtime.onMessage.addListener((request) => {
