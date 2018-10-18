@@ -140,3 +140,4 @@ chrome.runtime.onMessage.addListener((request) => {
 })
 
 readAndRun()
+chrome.extension.sendMessage('displayIcon')

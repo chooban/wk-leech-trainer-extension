@@ -6,7 +6,7 @@ async function getApiKey() {
     if (typeof apiKey === 'string' && apiKey.length === 36) {
       resolve(apiKey)
     } else {
-      fetch('/settings/account', {
+      fetch('https://www.wanikani.com/settings/account', {
         credentials: 'same-origin'
       }).then((response) => {
         if (typeof page !== 'string') {
@@ -24,7 +24,8 @@ async function getApiKey() {
           localStorage.setItem('apiKey_v2', apiKey)
           resolve(apiKey)
         })
-      }, () => {
+      }, (e) => {
+        console.error(e)
         reject(new Error('Failed to fetch API key!'))
       })
     }

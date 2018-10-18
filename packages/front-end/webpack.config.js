@@ -7,6 +7,7 @@ module.exports = {
   entry: {
     leech: './src/index.jsx',
     background: './src/background.js',
+    'leeches-background': './src/leeches-background.js',
     'options/index': './src/options/index.jsx'
   },
   output: {
