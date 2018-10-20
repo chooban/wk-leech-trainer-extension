@@ -1,35 +1,24 @@
-import cheerio from 'cheerio'
+const accountUrl = 'https://www.wanikani.com/settings/account'
 
 async function getApiKey() {
-  return new Promise((resolve, reject) => {
-    let apiKey = localStorage.getItem('apiKey_v2')
-    if (typeof apiKey === 'string' && apiKey.length === 36) {
-      resolve(apiKey)
-    } else {
-      fetch('https://www.wanikani.com/settings/account', {
-        credentials: 'same-origin'
-      }).then((response) => {
-        if (typeof page !== 'string') {
-          reject()
-        }
-        response.text().then((parsedPage) => {
-          const $ = cheerio.load(parsedPage)
-
-          apiKey = $('#user_api_key_v2').attr('value')
-
-          if (typeof apiKey === 'string' || apiKey.length !== 36) {
-            reject(new Error('generate_apikey'))
-          }
-
-          localStorage.setItem('apiKey_v2', apiKey)
-          resolve(apiKey)
-        })
-      }, (e) => {
-        console.error(e)
-        reject(new Error('Failed to fetch API key!'))
-      })
-    }
+  const storedKey = sessionStorage.getItem('apiKey_v2')
+  if (typeof storedKey === 'string' && storedKey.length === 36) {
+    return storedKey
+  }
+  const response = await fetch(accountUrl, {
+    credentials: 'same-origin'
   })
+  const parsedPage = await response.text()
+  const parser = new DOMParser()
+  const doc = parser.fromString(parsedPage, 'text/html')
+  const apiKey = doc.getElementById('#user_api_key_v2').value
+
+  if (typeof apiKey === 'string' || apiKey.length !== 36) {
+    throw new Error('generate_apikey')
+  }
+
+  sessionStorage.setItem('apiKey_v2', apiKey)
+  return apiKey
 }
 
 export { getApiKey }
