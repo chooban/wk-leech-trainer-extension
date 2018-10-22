@@ -5,7 +5,7 @@ const WriteFilePlugin = require('write-file-webpack-plugin')
 
 module.exports = {
   entry: {
-    leech: './src/index.jsx',
+    leech: './src/index.ts',
     background: './src/background.js',
     'leeches-background': './src/leeches-background.js',
     'options/index': './src/options/index.jsx'
@@ -37,10 +37,13 @@ module.exports = {
       use: [{
         loader: 'raw-loader'
       }]
+    }, {
+      test: /\.tsx?$/,
+      loader: ['babel-loader', 'ts-loader']
     }]
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     modules: [
       path.join(__dirname, 'src'),
       path.join(__dirname, '..', '..', 'node_modules')

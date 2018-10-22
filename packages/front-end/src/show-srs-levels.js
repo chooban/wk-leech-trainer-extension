@@ -1,61 +1,11 @@
 import { h, render } from 'preact'
 import wkjs from '@chooban/wkjs'
-import leechBadgeDom from './html/leech-badge.html'
-import elem from './element'
+
 import * as wk from './wk-account'
-import * as leechStore from './leech-store'
-import leechCountObserver from './leech-count-observer'
-import Popup from './show-leeches-popup'
 import SrsProgress from './components/srs-progress'
+import createTargetNode from './create-node'
 
-function readAndRun() {
-  chrome.storage.sync.get((settings) => {
-    main(settings)
-  })
-}
-
-function leechCount(show) {
-  if (!show) {
-    const leechBadge = document.querySelector('ul.nav > li.leeches')
-    if (leechBadge) {
-      leechBadge.remove()
-    }
-    return
-  }
-
-  const reviewsBadge = document.querySelector('ul.nav > li.reviews')
-  const leechBadgeNode = reviewsBadge.parentElement.appendChild(elem(leechBadgeDom))
-  const availableLeeches = leechBadgeNode.querySelector('.available_leeches')
-  const updateLeeches = () => wk.getApiKey()
-    .then(leechStore.refresh)
-    .then(() => {
-      availableLeeches.textContent = leechStore.count()
-    })
-
-  const popup = new Popup()
-  popup.onHide(updateLeeches)
-
-  const observer = new MutationObserver(leechCountObserver(
-    leechBadgeNode,
-    () => popup.show(leechStore.lessonItems())
-  ))
-
-  observer.observe(availableLeeches, {
-    characterData: false,
-    attributes: false,
-    childList: true,
-    subtree: false
-  })
-  updateLeeches()
-}
-
-function createTargetNode() {
-  const targetNode = document.createElement('span')
-  targetNode.setAttribute('data-wk-ext', 'true')
-  return targetNode
-}
-
-async function srsProgress(show) {
+export default async function srsProgress(show) {
   if (!show) {
     const progressNodes = document.querySelectorAll('.srs-progress [data-wk-ext=true]')
     if (progressNodes) {
@@ -113,31 +63,3 @@ async function srsProgress(show) {
   )
 }
 
-function skipSummary(skip) {
-  const reviewsNode = document.querySelector('ul.nav > li.reviews > a')
-
-  if (!reviewsNode) {
-    return
-  }
-
-  if (skip) {
-    reviewsNode.setAttribute('href', '/review/start')
-  } else {
-    reviewsNode.setAttribute('href', '/review')
-  }
-}
-
-export default function main(settings) {
-  leechCount(settings.showLeechCount)
-  srsProgress(settings.showSrsStats)
-  skipSummary(settings.skipReviewsSummary)
-}
-
-chrome.runtime.onMessage.addListener((request) => {
-  if (request.action === 'settingsUpdated') {
-    readAndRun()
-  }
-})
-
-readAndRun()
-chrome.extension.sendMessage('displayIcon')

@@ -1,4 +1,5 @@
 {
+  "parser": "typescript-eslint-parser",
   "parserOptions": {
     "ecmaVersion": 2018,
     "impliedStrict": true,
@@ -7,12 +8,11 @@
   "env": {
     "node": true,
     "es6": true,
-    "browser": true
+    "browser": true,
+    "webextensions": true
   },
   "globals": {
-    "browser": true,
-    "chrome": true,
-    "storage": true
+    "browser": true
   },
   "plugins": [
   ],
