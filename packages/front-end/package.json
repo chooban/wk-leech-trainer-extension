@@ -9,7 +9,7 @@
     "api": "json-server -c api/config.json api/db.json",
     "build": "NODE_ENV=production webpack --display-error-details --progress --colors",
     "dev": "webpack --watch --display-error-details --progress --colors",
-    "style": "eslint src/"
+    "style": "eslint 'src/**/*.{js,jsx}'; tslint 'src/**/*.{ts,tsx}'"
   },
   "dependencies": {
     "@chooban/wkjs": "1.0.0",
@@ -42,6 +42,7 @@
     "eslint-plugin-react": "^7.5.1",
     "raw-loader": "^0.5.1",
     "ts-loader": "^5.2.2",
+    "tslint": "^5.11.0",
     "typescript": "^3.1.3",
     "typescript-eslint-parser": "^20.0.0",
     "web-ext-types": "^3.0.0",

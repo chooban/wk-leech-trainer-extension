@@ -6,8 +6,8 @@ const WriteFilePlugin = require('write-file-webpack-plugin')
 module.exports = {
   entry: {
     leech: './src/index.ts',
-    background: './src/background.js',
-    'leeches-background': './src/leeches-background.js',
+    background: './src/background.ts',
+    'leeches-background': './src/leeches-background.ts',
     'options/index': './src/options/index.jsx'
   },
   output: {

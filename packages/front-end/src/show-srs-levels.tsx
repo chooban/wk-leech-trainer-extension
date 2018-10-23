@@ -1,9 +1,9 @@
-import { h, render } from 'preact'
 import wkjs from '@chooban/wkjs'
+import { h, render } from 'preact'
 
-import * as wk from './wk-account'
 import SrsProgress from './components/srs-progress'
 import createTargetNode from './create-node'
+import * as wk from './wk-account'
 
 export default async function srsProgress(show) {
   if (!show) {
@@ -22,7 +22,7 @@ export default async function srsProgress(show) {
     // to expand to the height of the parent, and the parent to be the height of the largest child
     // element. We know that by adding elements to the first one we'll increase the size of the
     // child so then we have to set that height on the parent so that other children can inherit it.
-    const node = document.querySelector('.srs-progress')
+    const node = document.querySelector('.srs-progress') as HTMLElement
     const progressionList = node.querySelector('ul')
     const { height } = node.getBoundingClientRect()
 
@@ -30,15 +30,15 @@ export default async function srsProgress(show) {
     progressionList.style.height = '100%'
 
     const categories = progressionList.querySelectorAll('li')
-    for (let i = 0; i < categories.length; i += 1) {
-      categories[i].style.height = '100%'
-      categories[i].style['vertical-align'] = 'top'
+    for (const category of categories) {
+      category.style.height = '100%'
+      category.style['vertical-align'] = 'top'
     }
   })
 
   observer.observe(document.querySelector('.srs-progress'), {
     childList: true,
-    subtree: true
+    subtree: true,
   })
 
   const apprenticeProgress = document.querySelector('.srs-progress > ul > li#apprentice')
@@ -54,12 +54,11 @@ export default async function srsProgress(show) {
   render(
     <SrsProgress api={api} levels={[1, 2, 3, 4]} />,
     apprenticeProgress,
-    apprContainer
+    apprContainer,
   )
   render(
     <SrsProgress api={api} levels={[5, 6]} />,
     guruProgress,
-    guruContainer
+    guruContainer,
   )
 }
-

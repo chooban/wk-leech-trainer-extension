@@ -8,7 +8,7 @@
     "*://www.wanikani.com/*",
     "storage"
   ],
-  "page_action": {
+  "browser_action": {
     "browser_style": true,
     "chrome_style": true,
     "default_title": "Wanikani Leech Trainer",

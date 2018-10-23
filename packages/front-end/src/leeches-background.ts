@@ -2,7 +2,7 @@ import wkjs from '@chooban/wkjs'
 import * as wk from './wk-account'
 
 async function main() {
-  chrome.extension.sendMessage('retrievingLeeches')
+  chrome.runtime.sendMessage('retrievingLeeches')
 
   const key = await wk.getApiKey()
   const api = wkjs(key)

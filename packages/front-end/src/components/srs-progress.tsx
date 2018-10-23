@@ -1,21 +1,28 @@
-import { h, Component } from 'preact'
+import { Component, h } from 'preact'
 
-class SrsProgress extends Component {
+export interface ISrsProgressProps {
+  api: any
+  levels: number[]
+}
+
+export default class SrsProgress extends Component<ISrsProgressProps, any> {
   constructor() {
     super()
-    this.state.levelCounts = []
+    this.state = {
+      levelCounts: [],
+    }
   }
 
-  async componentWillMount() {
+  public async componentWillMount() {
     const { api, levels } = this.props
     const counts = await api.progress(levels)
 
     this.setState({
-      levelCounts: levels.map((l) => counts[`${l}`])
+      levelCounts: levels.map((l) => counts[`${l}`]),
     })
   }
 
-  render(props, state) {
+  public render(props, state) {
     const { levelCounts } = state
     const styles = {
       outer: {
@@ -23,9 +30,9 @@ class SrsProgress extends Component {
         display: 'block',
         fontSize: '15px',
         fontWeight: 'initial',
+        marginBottom: '4px',
         textShadow: 'initial',
-        marginBottom: '4px'
-      }
+      },
     }
 
     return (
@@ -38,5 +45,3 @@ class SrsProgress extends Component {
     )
   }
 }
-
-export default SrsProgress

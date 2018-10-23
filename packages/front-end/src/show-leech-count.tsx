@@ -1,14 +1,15 @@
 import { h, render } from 'preact'
 
-import * as leechStore from './leech-store'
-import createTargetNode from './create-node'
 import LeechBadge from './components/leech-count'
+import createTargetNode from './create-node'
+import * as leechStore from './leech-store'
 
 export default function leechCount(show) {
+  const existingBadge = document.querySelector('ul.nav > li.leeches') as HTMLElement
+
   if (!show) {
-    const leechBadge = document.querySelector('ul.nav > li.leeches')
-    if (leechBadge) {
-      leechBadge.remove()
+    if (existingBadge) {
+      existingBadge.remove()
     }
     return
   }
@@ -22,7 +23,7 @@ export default function leechCount(show) {
 
   render(
     <LeechBadge count={count} />,
-    leechBadge,
-    badgeContainer
+    existingBadge,
+    badgeContainer,
   )
 }
