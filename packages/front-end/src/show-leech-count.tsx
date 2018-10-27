@@ -4,7 +4,7 @@ import LeechBadge from './components/leech-count'
 import createTargetNode from './create-node'
 import * as leechStore from './leech-store'
 
-export default function leechCount(show) {
+export default function leechCount(show: boolean) {
   const existingBadge = document.querySelector('ul.nav > li.leeches') as HTMLElement
 
   if (!show) {

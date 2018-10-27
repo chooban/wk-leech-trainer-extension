@@ -4,6 +4,7 @@
     "module": "commonjs",
     "noImplicitAny": false,
     "removeComments": true,
+    "esModuleInterop": true,
     "sourceMap": false,
     "jsx": "react",
     "jsxFactory": "h",
@@ -13,7 +14,8 @@
   },
   "include": [
     "./src/**/*.tsx",
-    "./src/**/*.ts"
+    "./src/**/*.ts",
+    "../wkjs/**/*.ts"
   ],
   "exclude": [
     "node_modules"

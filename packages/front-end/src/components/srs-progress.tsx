@@ -5,7 +5,11 @@ export interface ISrsProgressProps {
   levels: number[]
 }
 
-export default class SrsProgress extends Component<ISrsProgressProps, any> {
+export interface ISrsProgressState {
+  levelCounts: number[]
+}
+
+export default class SrsProgress extends Component<ISrsProgressProps, ISrsProgressState> {
   constructor() {
     super()
     this.state = {

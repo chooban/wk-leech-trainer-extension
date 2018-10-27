@@ -5,7 +5,7 @@ import SrsProgress from './components/srs-progress'
 import createTargetNode from './create-node'
 import * as wk from './wk-account'
 
-export default async function srsProgress(show) {
+export default async function srsProgress(show: boolean) {
   if (!show) {
     const progressNodes = document.querySelectorAll('.srs-progress [data-wk-ext=true]')
     if (progressNodes) {
