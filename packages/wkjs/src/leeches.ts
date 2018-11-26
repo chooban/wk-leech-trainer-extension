@@ -14,6 +14,7 @@ interface ReviewSubject {
   hidden: boolean
 }
 
+
 interface ReviewStatistics {
   id: number,
   'object': string,
@@ -37,46 +38,47 @@ interface WanikaniResponse {
 
 const meaningScore = (l: ReviewSubject) => l.meaning_incorrect / (l.meaning_current_streak ** 1.5)
 const readingScore = (l: ReviewSubject) => l.reading_incorrect / (l.reading_current_streak ** 1.5)
+const isLeech = function(l: ReviewSubject): boolean {
+  const mScore = meaningScore(l)
+  const rScore = readingScore(l)
+
+  return mScore > 1 || rScore > 1
+}
 
 const url = 'https://api.wanikani.com/v2/review_statistics?subject_types=kanji,vocabulary'
+
+const extractLeechesFromData = (data: ReviewStatistics[]) => (
+  data
+  .filter(a => a.data.meaning_correct >= 4)
+  .filter(a => a.data.meaning_incorrect + a.data.meaning_correct !== 0)
+  .filter(l => isLeech(l.data))
+  .map(l => l.data)
+)
+
+const getLeeches = async function(url: RequestInfo, headers: Headers): Promise<ReviewSubject[]> {
+  const request = new Request(url, { headers })
+  const page = await fetch(request)
+    .then((response) => {
+      if (response.status >= 400) {
+        throw new Error('Could not fetch data')
+      }
+      return response
+    })
+    .then((r) => r.json()) as WanikaniResponse
+
+  const leeches = extractLeechesFromData(page.data)
+  console.log(`Got ${leeches.length} leeches`)
+  if (page.pages.next_url) {
+    return leeches.concat(await getLeeches(page.pages.next_url, headers))
+  }
+  return leeches
+}
 
 const leeches = async (apiKey: string) => {
   const headers = new Headers()
   headers.append('Authorization', `Bearer ${apiKey}`)
 
-  const options = { headers }
-
-  const urls = [url]
-  const items = await urls.reduce(async (previousValue, curr, idx, urls) => {
-    const acc = await previousValue
-    const request = new Request(curr, options)
-    const page = await fetch(request)
-      .then((response) => {
-        if (response.status >= 400) {
-          throw new Error('Could not fetch data')
-        }
-        return response
-      })
-      .then((r) => r.json()) as WanikaniResponse
-
-    const leeches = page.data
-      .filter((a) => a.data.meaning_correct >= 4)
-      .filter((a) => a.data.meaning_incorrect + a.data.meaning_correct !== 0)
-      .map((l) => ({
-        ...l.data,
-        meaning_score: meaningScore(l.data),
-        reading_score: readingScore(l.data),
-      }))
-      .filter((l) => !(l.meaning_score < 1 && l.reading_score < 1)) as any[]
-
-    if (page.pages.next_url) {
-      urls.push(page.pages.next_url)
-    }
-
-    return [acc, ...leeches]
-  }, Promise.resolve(<any[]> []))
-
-  return items
+  return getLeeches(url, headers)
 }
 
 export default leeches

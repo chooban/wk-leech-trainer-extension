@@ -39,35 +39,30 @@ interface WanikaniResponse {
 
 const defaultStages = [1, 2, 3, 4, 5, 6]
 
+const getProgress = async function(url: RequestInfo, headers: Headers): Promise<Assignment[]> {
+  const request = new Request(url, { headers })
+  const page = await fetch(request)
+    .then((response) => {
+      if (response.status >= 400) {
+        throw new Error('Could not fetch data')
+      }
+      return response
+    })
+    .then((r) => r.json()) as WanikaniResponse
+
+  if (page.pages.next_url) {
+    return page.data.concat(await getProgress(page.pages.next_url, headers))
+  }
+  return page.data
+}
+
 async function progress(apiKey: string, srsStages = defaultStages) {
   const url = `https://api.wanikani.com/v2/assignments?srs_stages=${srsStages.join(',')}`
 
   const headers = new Headers()
   headers.append('Authorization', `Bearer ${apiKey}`)
 
-  const options = { headers }
-
-  const items = []
-  const urls = [url]
-
-  for (var i = 0; i < urls.length; i++) {
-    const request = new Request(urls[i], options)
-    const page = await fetch(request)
-      .then((response) => {
-        if (response.status >= 400) {
-          throw new Error('Could not fetch data')
-        }
-        return response
-      })
-      .then((r) => r.json()) as WanikaniResponse
-
-    items.push(...page.data)
-
-    if (page.pages.next_url) {
-      urls.push(page.pages.next_url)
-    }
-  }
-
+  const items = await getProgress(url, headers)
   const groupedLeeches = groupBy(items, (item) => item.data.srs_stage)
 
   return srsStages.reduce((acc, cur) => {
