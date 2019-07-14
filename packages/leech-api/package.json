@@ -1,21 +1,17 @@
 {
-  "name": "@chooban/wkjs",
+  "name": "leech-api",
   "version": "1.0.0",
-  "description": "WaniKani API",
   "main": "src/index.ts",
   "author": "Ross Hendry (rhendry@googlemail.com)",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "build": "tsc"
   },
   "dependencies": {
-    "@types/axios": "^0.14.0",
-    "axios": "^0.19.0",
-    "lodash.groupby": "4.6.0"
+    "@chooban/wkjs": "1.0.0"
   },
   "devDependencies": {
-    "@types/lodash.groupby": "^4.6.6",
-    "isomorphic-fetch": "^2.2.1",
     "tslint": "^5.18.0",
     "typescript": "^3.5.3"
   }

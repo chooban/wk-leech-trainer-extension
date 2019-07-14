@@ -1,9 +1,16 @@
-import leeches from './leeches'
-import progress from './progress'
+import { getReviewStatistics, subject } from './api/'
+import { WanikaniAPI } from './types';
 
-const factory = (apiKey) => ({
-  leeches: leeches.bind(this, apiKey),
-  progress: progress.bind(this, apiKey),
-})
+const wkjs = (apiKey: string): WanikaniAPI => {
+  return {
+    getReviewStatistics() {
+      return getReviewStatistics(apiKey)
+    },
+    subject(id: number) {
+      return subject(apiKey, id)
+    }
+  }
+}
 
-export default factory
+export * from './types'
+export { wkjs as Wanikani }

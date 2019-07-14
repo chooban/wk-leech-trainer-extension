@@ -75,4 +75,4 @@ async function progress(apiKey: string, srsStages = defaultStages) {
   }, {} as {[key: string]: number})
 }
 
-export default progress
+export { progress }
