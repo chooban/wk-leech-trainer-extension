@@ -1,7 +1,11 @@
-import { ReviewStatistics } from './reviewstatistics';
-import { ReviewScores, ReviewSubject } from './reviewsubject';
-import { WanikaniResponse } from './wanikaniresponse';
-import { WanikaniAPI } from './wanikaniapi'
+import { ReviewStatistic, ReviewStatisticSubject } from './reviewstatistics'
+import { Subject } from './subject'
+import { WanikaniCollectionResponse, WanikaniResourceResponse } from './wanikaniresponse'
 
-export { ReviewScores, ReviewStatistics, ReviewSubject, WanikaniResponse, WanikaniAPI };
-
+export {
+  ReviewStatistic,
+  ReviewStatisticSubject,
+  Subject,
+  WanikaniCollectionResponse,
+  WanikaniResourceResponse,
+}

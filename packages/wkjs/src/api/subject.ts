@@ -1,12 +1,20 @@
 import axios from 'axios'
 
-const subject = async(apiKey: string, id: number) => {
+import { Subject as WKSubject, WanikaniResourceResponse } from '../types'
+import { Subject } from '../types/external'
+
+const subject = async (apiKey: string, id: number): Promise<Subject> => {
   const headers = {
-    'Authorization': `Bearer ${apiKey}`
+    Authorization: `Bearer ${apiKey}`,
   }
 
   const s = await axios.get(`https://api.wanikani.com/v2/subjects/${id}`, { headers })
 
-  return s.data
+  const response = s.data as WanikaniResourceResponse<WKSubject>
+
+  return {
+    id,
+    ...response.data,
+  } as Subject
 }
 export { subject }

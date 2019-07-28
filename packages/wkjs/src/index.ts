@@ -1,16 +1,16 @@
-import { getReviewStatistics, subject } from './api/'
-import { WanikaniAPI } from './types';
+import { reviewStatistics, subject } from './api/'
+import { WanikaniAPI } from './types/external'
 
 const wkjs = (apiKey: string): WanikaniAPI => {
   return {
-    getReviewStatistics() {
-      return getReviewStatistics(apiKey)
+    reviewStatistics() {
+      return reviewStatistics(apiKey)
     },
     subject(id: number) {
       return subject(apiKey, id)
-    }
+    },
   }
 }
 
-export * from './types'
+export * from './types/external'
 export { wkjs as Wanikani }

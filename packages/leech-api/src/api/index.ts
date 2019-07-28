@@ -3,5 +3,5 @@ import { progress } from './progress'
 
 export {
   leeches,
-  progress
+  progress,
 }
