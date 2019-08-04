@@ -1,7 +1,8 @@
-import { ReviewStatistic} from '../reviewstatistics'
-import { Subject } from './subject'
+import { ReviewStatistic } from '../reviewstatistics'
+import { Assignment, Subject } from './'
 
 interface WanikaniAPI {
+  assignments(): Promise<Assignment[]>,
   reviewStatistics(): Promise<ReviewStatistic[]>
   subject(id: number): Promise<Subject>
 }

@@ -1,8 +1,16 @@
 {
   "private": true,
-  "workspaces": [ "packages/*" ],
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "build": "yarn workspace wk-leeches build",
-    "dev": "yarn workspace wk-leeches dev"
+    "dev": "yarn workspace wk-leeches dev",
+    "build:watch": "wsrun -p leech-api -r build:watch"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.1",
+    "dotenv": "^8.0.0",
+    "wsrun": "^5.0.0"
   }
 }

@@ -1,9 +1,6 @@
-export interface ReviewStatisticSubject {
-  id: number,
-  'object': string,
-  url: string,
-  data_updated_at: Date,
-  data: ReviewStatistic
+import { WanikaniResourceResponse } from './'
+
+export interface ReviewStatisticSubject extends WanikaniResourceResponse<ReviewStatistic> {
 }
 
 export interface ReviewStatistic {

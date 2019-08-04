@@ -20,26 +20,26 @@ interface Assignment {
     resurrected_at?: Date,
     passed: boolean,
     resurrected: boolean,
-    hidden: boolean
+    hidden: boolean,
   }
 }
 
 interface WanikaniResponse {
-  'object': string;
-  url: string;
+  'object': string
+  url: string
   pages: {
     per_page: number;
     next_url?: string;
     previous_url?: string;
-  };
-  total_count: number;
-  data_updated_at: Date;
-  data: Array<Assignment>;
+  }
+  total_count: number
+  data_updated_at: Date
+  data: Assignment[]
 }
 
 const defaultStages = [1, 2, 3, 4, 5, 6]
 
-const getProgress = async function(url: RequestInfo, headers: Headers): Promise<Assignment[]> {
+const getProgress = async (url: RequestInfo, headers: Headers): Promise<Assignment[]> => {
   const request = new Request(url, { headers })
   const page = await fetch(request)
     .then((response) => {
@@ -72,7 +72,7 @@ async function progress(apiKey: string, srsStages = defaultStages) {
       acc[cur] = 0
     }
     return acc
-  }, {} as {[key: string]: number})
+  }, {} as { [key: string]: number })
 }
 
 export { progress }
