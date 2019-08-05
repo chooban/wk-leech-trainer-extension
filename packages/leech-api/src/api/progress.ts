@@ -9,12 +9,12 @@ async function progress(wkApi: WanikaniAPI, srsStages = defaultStages) {
 
   return srsStages.reduce((acc, cur) => {
     if (groupedLeeches[cur]) {
-      acc[cur] = groupedLeeches[cur].length
+      acc.set('' + cur, groupedLeeches[cur].length)
     } else {
-      acc[cur] = 0
+      acc.set('' + cur, 0)
     }
     return acc
-  }, {} as { [key: string]: number })
+  }, new Map<string, number>())
 }
 
 export { progress }

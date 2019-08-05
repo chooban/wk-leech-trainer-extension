@@ -8,16 +8,10 @@
     "sourceMap": false,
     "jsx": "react",
     "jsxFactory": "h",
-    "types": [
-      "chrome"
-    ]
+    "types": ["chrome"],
+    "rootDir": "./src",
+    "outDir": "./dist"
   },
-  "include": [
-    "./src/**/*.tsx",
-    "./src/**/*.ts",
-    "../wkjs/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["./src/**/*.tsx", "./src/**/*.ts", "../wkjs/**/*.ts"],
+  "exclude": ["node_modules"]
 }

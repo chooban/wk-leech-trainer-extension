@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@chooban/wkjs": "1.0.0",
+    "@chooban/leeches": "1.0.0",
     "preact": "^8.4.2"
   },
   "devDependencies": {
