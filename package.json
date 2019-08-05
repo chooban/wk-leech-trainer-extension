@@ -6,7 +6,7 @@
   "scripts": {
     "build": "yarn workspace wk-leeches build",
     "dev": "yarn workspace wk-leeches dev",
-    "build:watch": "wsrun -p leech-api -r build:watch"
+    "build:watch": "wsrun -p @chooban/leeches -r build:watch"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
