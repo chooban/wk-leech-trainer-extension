@@ -1,11 +1,11 @@
-import wkjs from '@chooban/wkjs'
+import { LeechesAPI } from '@chooban/leeches'
 import * as wk from './wk-account'
 
 async function main() {
   chrome.runtime.sendMessage('retrievingLeeches')
 
   const key = await wk.getApiKey()
-  const api = wkjs(key)
+  const api = LeechesAPI(key)
 
   try {
     const leeches = await api.leeches()
@@ -23,9 +23,9 @@ async function main() {
 
     dbRequest.onsuccess = (e) => {
       console.log('Got db connection')
-      const db = (<any> e.target).result as IDBDatabase
+      const db = (e.target as any).result as IDBDatabase
       const leechStore = db.createObjectStore('leeches', {
-        keyPath: 'subject_id'
+        keyPath: 'subject_id',
       })
     }
   } catch (e) {

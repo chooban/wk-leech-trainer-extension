@@ -1,4 +1,4 @@
-import wkjs from '@chooban/wkjs'
+import { LeechesAPI } from '@chooban/leeches'
 import { h, render } from 'preact'
 
 import SrsProgress from './components/srs-progress'
@@ -9,13 +9,13 @@ export default async function srsProgress(show: boolean) {
   if (!show) {
     const progressNodes = document.querySelectorAll('.srs-progress [data-wk-ext=true]')
     if (progressNodes) {
-      progressNodes.forEach((node) => node.remove())
+      progressNodes.forEach(node => node.remove())
     }
     return
   }
 
   const key = await wk.getApiKey()
-  const api = wkjs(key)
+  const api = LeechesAPI(key)
 
   const observer = new MutationObserver(() => {
     // Trying to set the heigh of an ul can be fun! In this instance we want child elements
@@ -38,27 +38,21 @@ export default async function srsProgress(show: boolean) {
 
   observer.observe(document.querySelector('.srs-progress'), {
     childList: true,
-    subtree: true,
+    subtree: true
   })
 
   const apprenticeProgress = document.querySelector('.srs-progress > ul > li#apprentice')
-  const apprContainer = apprenticeProgress.querySelector('[data-wk-ext=true]') === null
-    ? apprenticeProgress.insertBefore(createTargetNode(), apprenticeProgress.lastChild)
-    : apprenticeProgress.querySelector('[data-wk-ext=true]')
+  const apprContainer =
+    apprenticeProgress.querySelector('[data-wk-ext=true]') === null
+      ? apprenticeProgress.insertBefore(createTargetNode(), apprenticeProgress.lastChild)
+      : apprenticeProgress.querySelector('[data-wk-ext=true]')
 
   const guruProgress = document.querySelector('.srs-progress > ul > li#guru')
-  const guruContainer = guruProgress.querySelector('[data-wk-ext=true]') === null
-    ? guruProgress.insertBefore(createTargetNode(), guruProgress.lastChild)
-    : guruProgress.querySelector('[data-wk-ext=true]')
+  const guruContainer =
+    guruProgress.querySelector('[data-wk-ext=true]') === null
+      ? guruProgress.insertBefore(createTargetNode(), guruProgress.lastChild)
+      : guruProgress.querySelector('[data-wk-ext=true]')
 
-  render(
-    <SrsProgress api={api} levels={[1, 2, 3, 4]} />,
-    apprenticeProgress,
-    apprContainer,
-  )
-  render(
-    <SrsProgress api={api} levels={[5, 6]} />,
-    guruProgress,
-    guruContainer,
-  )
+  render(<SrsProgress api={api} levels={[1, 2, 3, 4]} />, apprenticeProgress, apprContainer)
+  render(<SrsProgress api={api} levels={[5, 6]} />, guruProgress, guruContainer)
 }
