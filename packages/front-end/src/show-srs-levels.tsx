@@ -1,20 +1,20 @@
 import { LeechesAPI } from '@chooban/leeches'
 import { h, render } from 'preact'
 
-import SrsProgress from './components/srs-progress'
+import SrsProgress from './components/SrsProgress'
 import createTargetNode from './create-node'
-import * as wk from './wk-account'
+import { getApiKey } from './wk-account'
 
-export default async function srsProgress(show: boolean) {
-  if (!show) {
+export default async function srsProgress(settings: { [key: string]: any }) {
+  if (!settings.showSrsStats) {
     const progressNodes = document.querySelectorAll('.srs-progress [data-wk-ext=true]')
     if (progressNodes) {
-      progressNodes.forEach(node => node.remove())
+      progressNodes.forEach((node) => node.remove())
     }
     return
   }
 
-  const key = await wk.getApiKey()
+  const key = await getApiKey()
   const api = LeechesAPI(key)
 
   const observer = new MutationObserver(() => {
@@ -22,7 +22,7 @@ export default async function srsProgress(show: boolean) {
     // to expand to the height of the parent, and the parent to be the height of the largest child
     // element. We know that by adding elements to the first one we'll increase the size of the
     // child so then we have to set that height on the parent so that other children can inherit it.
-    const node = document.querySelector('.srs-progress') as HTMLElement
+    const node: HTMLElement = document.querySelector('.srs-progress')
     const progressionList = node.querySelector('ul')
     const { height } = node.getBoundingClientRect()
 
@@ -30,15 +30,15 @@ export default async function srsProgress(show: boolean) {
     progressionList.style.height = '100%'
 
     const categories = progressionList.querySelectorAll('li')
-    for (const category of categories) {
+    categories.forEach((category) => {
       category.style.height = '100%'
       category.style['vertical-align'] = 'top'
-    }
+    })
   })
 
   observer.observe(document.querySelector('.srs-progress'), {
     childList: true,
-    subtree: true
+    subtree: true,
   })
 
   const apprenticeProgress = document.querySelector('.srs-progress > ul > li#apprentice')

@@ -1,7 +1,8 @@
+import { API as WkAPI } from '@chooban/leeches'
 import { Component, h } from 'preact'
 
 export interface ISrsProgressProps {
-  api: any
+  api: WkAPI
   levels: number[]
 }
 
@@ -22,7 +23,7 @@ export default class SrsProgress extends Component<ISrsProgressProps, ISrsProgre
     const counts = await api.progress(levels)
 
     this.setState({
-      levelCounts: levels.map((l) => counts[`${l}`]),
+      levelCounts: levels.map((l) => counts.get(l.toString())),
     })
   }
 

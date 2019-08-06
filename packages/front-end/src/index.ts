@@ -4,9 +4,9 @@ import skipSummary from './skip-reviews-summary'
 
 function main() {
   chrome.storage.sync.get((settings) => {
-    leechCount(settings.showLeechCount)
-    srsProgress(settings.showSrsStats)
-    skipSummary(settings.skipReviewsSummary)
+    leechCount(settings)
+    srsProgress(settings)
+    // skipSummary(settings.skipReviewsSummary)
   })
   chrome.runtime.sendMessage('displayIcon')
 }

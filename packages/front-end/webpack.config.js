@@ -7,7 +7,7 @@ module.exports = {
   entry: {
     leech: './src/index.ts',
     background: './src/background.ts',
-    'leeches-background': './src/leeches-background.ts',
+    // 'leeches-background': './src/leeches-background.ts',
     'options/index': './src/options/index.jsx'
   },
   output: {
@@ -39,7 +39,7 @@ module.exports = {
       }]
     }, {
       test: /\.tsx?$/,
-      loader: ['babel-loader', 'ts-loader']
+      loader: ['ts-loader']
     }]
   },
   resolve: {

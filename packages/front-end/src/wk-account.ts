@@ -1,4 +1,4 @@
-const accountUrl = 'https://www.wanikani.com/settings/account'
+const accountUrl = 'https://www.wanikani.com/settings/personal_access_tokens'
 
 async function getApiKey() {
   const storedKey = sessionStorage.getItem('apiKey_v2')
@@ -6,20 +6,21 @@ async function getApiKey() {
     return storedKey
   }
   const response = await fetch(accountUrl, {
-    credentials: 'same-origin'
+    credentials: 'same-origin',
   })
   const parsedPage = await response.text()
   const parser = new DOMParser()
   const doc = parser.parseFromString(parsedPage, 'text/html')
-  const apiKey = doc.querySelector('#user_api_key_v2')
+  const apiKey: HTMLElement = doc.querySelector('table#personal-access-tokens-list tbody tr:last-of-type code')
 
-  if (apiKey.value.length !== 36) {
+  const key = apiKey.innerText || ''
+  if (key.length !== 36) {
     throw new Error('generate_apikey')
   }
 
-  sessionStorage.setItem('apiKey_v2', apiKey.value)
+  sessionStorage.setItem('apiKey_v2', key)
 
-  return apiKey.value
+  return key
 }
 
 export { getApiKey }

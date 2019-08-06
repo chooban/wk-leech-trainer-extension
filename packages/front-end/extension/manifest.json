@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "WK Leech Trainer",
-  "version": "0.2",
+  "version": "0.3",
   "description": "Study those leeches! Squash 'em real good!",
   "permissions": [
     "webRequest",
@@ -20,8 +20,7 @@
   },
   "background": {
     "scripts": [
-      "background.js",
-      "leeches-background.js"
+      "background.js"
     ]
   },
   "content_scripts": [

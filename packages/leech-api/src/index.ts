@@ -2,7 +2,7 @@ import { Wanikani, WanikaniAPI } from '@chooban/wkjs'
 import { leeches as leechesAPI, progress } from './api'
 import { ReviewStatisticWithScores } from './types'
 
-interface API extends WanikaniAPI {
+export interface API extends WanikaniAPI {
   leeches: () => Promise<ReviewStatisticWithScores[]>,
   progress: (stages?: number[]) => Promise<Map<string, number>>
 }

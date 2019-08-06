@@ -8,7 +8,7 @@ class Popup {
   constructor() {
     this.quizPopupNode = document.body.appendChild(elem(quizPopupDom))
     this.abortNode = this.quizPopupNode.appendChild(elem('<div class="ss_quiz_abort hidden"/>'))
-    this.onHide = () => {}
+    this.onHide = () => { }
     this.quiz = undefined
   }
 
