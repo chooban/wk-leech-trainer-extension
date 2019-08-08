@@ -14,7 +14,7 @@
   "dependencies": {
     "@chooban/leeches": "1.0.0",
     "@chooban/wkjs": "1.0.0",
-    "preact": "^8.5.0"
+    "preact": "^10.0.0-rc.1"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

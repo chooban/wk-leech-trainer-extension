@@ -1,10 +1,10 @@
-import leechCount from './show-leech-count'
-import srsProgress from './show-srs-levels'
-import skipSummary from './skip-reviews-summary'
+import { LeechCount } from './leech-count/LeechCount'
+import srsProgress from './srs-progress/SrsProgress'
+// import skipSummary from './skip-reviews-summary'
 
 function main() {
   chrome.storage.sync.get((settings) => {
-    leechCount(settings)
+    LeechCount(settings)
     srsProgress(settings)
     // skipSummary(settings.skipReviewsSummary)
   })

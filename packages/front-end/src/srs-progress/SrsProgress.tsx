@@ -1,9 +1,9 @@
 import { LeechesAPI } from '@chooban/leeches'
 import { h, render } from 'preact'
 
-import SrsProgress from './components/SrsProgress'
+import { getApiKey } from '../wk-account'
 import createTargetNode from './create-node'
-import { getApiKey } from './wk-account'
+import { SrsProgressList } from './SrsProgressList'
 
 export default async function srsProgress(settings: { [key: string]: any }) {
   if (!settings.showSrsStats) {
@@ -53,6 +53,6 @@ export default async function srsProgress(settings: { [key: string]: any }) {
       ? guruProgress.insertBefore(createTargetNode(), guruProgress.lastChild)
       : guruProgress.querySelector('[data-wk-ext=true]')
 
-  render(<SrsProgress api={api} levels={[1, 2, 3, 4]} />, apprenticeProgress, apprContainer)
-  render(<SrsProgress api={api} levels={[5, 6]} />, guruProgress, guruContainer)
+  render(<SrsProgressList api={api} levels={[1, 2, 3, 4]} />, apprContainer)
+  render(<SrsProgressList api={api} levels={[5, 6]} />, guruContainer)
 }
