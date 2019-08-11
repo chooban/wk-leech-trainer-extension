@@ -8,7 +8,7 @@ const readingScore = (l: ReviewStatistic) => l.reading_incorrect / (l.reading_cu
 const extractLeechesFromStats = (data: ReviewStatistic[]): ReviewStatisticWithScores[] => (
   data
     .filter((a) => (a.meaning_correct >= 4) && (a.meaning_incorrect + a.meaning_correct !== 0))
-    .map((l) => ({ ...l, reading_score: readingScore(l), meaning_score: meaningScore(l) }))
+    .map((l) => ({ ...l, reading_score: readingScore(l), meaning_score: meaningScore(l) })) // eslint-disable-line
     .filter((l) => l.reading_score > 1.0 || l.meaning_score > 1.0)
 )
 

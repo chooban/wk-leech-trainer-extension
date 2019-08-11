@@ -1,4 +1,4 @@
-import { assignments, reviewStatistics, subject } from './api/'
+import { assignments, reviewStatistics, subject } from './api'
 import { WanikaniAPI } from './types/external'
 
 const wkjs = (apiKey: string): WanikaniAPI => ({

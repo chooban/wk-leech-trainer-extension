@@ -9,8 +9,9 @@ const createContainer = () => {
 }
 
 const LeechBadge = ({ count }) => (
-  <a>
-    <span className='available_leeches'>{count}</span>
+  // eslint-disable-next-line
+  <a href="#">
+    <span className="available_leeches">{count}</span>
     Leeches
   </a>
 )

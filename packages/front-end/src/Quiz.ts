@@ -3,7 +3,7 @@ import { Question } from './Question'
 class Quiz {
   private questions: Question[]
 
-  constructor(leechItems) {
+  public constructor(leechItems) {
     this.questions = leechItems.map((lesson) => new Question(lesson))
   }
 

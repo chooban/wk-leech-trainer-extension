@@ -3,8 +3,8 @@ import { leeches as leechesAPI, progress } from './api'
 import { ReviewStatisticWithScores } from './types'
 
 export interface API extends WanikaniAPI {
-  leeches: () => Promise<ReviewStatisticWithScores[]>,
-  progress: (stages?: number[]) => Promise<Map<string, number>>
+  leeches: () => Promise<ReviewStatisticWithScores[]>;
+  progress: (stages?: number[]) => Promise<Map<string, number>>;
 }
 
 const LeechesAPI = (apiKey: string): API => {

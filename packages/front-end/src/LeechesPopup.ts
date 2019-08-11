@@ -1,5 +1,5 @@
 import { makeElement } from './element'
-import { Quiz } from './quiz'
+import { Quiz } from './Quiz'
 
 const dom = `
 <div id="ss_quiz" class="kanji reading hidden">
@@ -21,10 +21,12 @@ const dom = `
 `
 class Popup {
   private quizPopupNode: HTMLElement
+
   private abortNode: HTMLElement
+
   private quiz: Quiz
 
-  constructor() {
+  public constructor() {
     this.quizPopupNode = document.body.appendChild(makeElement(dom))
     this.abortNode = this.quizPopupNode.appendChild(makeElement('<div class="ss_quiz_abort hidden"/>'))
     this.onHide = () => { // no-op

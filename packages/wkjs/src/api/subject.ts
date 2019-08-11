@@ -12,9 +12,10 @@ const subject = async (apiKey: string, id: number): Promise<Subject> => {
 
   const response = s.data as WanikaniResourceResponse<WKSubject>
 
-  return {
+  const res: Subject = {
     id,
     ...response.data,
-  } as Subject
+  }
+  return res
 }
 export { subject }

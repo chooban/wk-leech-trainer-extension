@@ -1,7 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const WriteFilePlugin = require('write-file-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -28,15 +27,9 @@ module.exports = {
             '@babel/plugin-proposal-object-rest-spread',
             '@babel/plugin-transform-regenerator',
             '@babel/plugin-transform-runtime',
-            ['@babel/plugin-transform-react-jsx', { pragma: 'h' }]
           ]
         }
       }
-    }, {
-      test: /\.html$/,
-      use: [{
-        loader: 'raw-loader'
-      }]
     }, {
       test: /\.tsx?$/,
       loader: ['ts-loader']
@@ -50,15 +43,9 @@ module.exports = {
     ]
   },
   plugins: [
-    // eslint-disable-next-line
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
-      __LESSONS_URL__: JSON.stringify('https://wk-stats-staging.herokuapp.com/leeches/lesson?api_key=')
-    }),
     new CopyWebpackPlugin([{
       from: 'extension/'
     }]),
-    new WriteFilePlugin()
   ],
   devtool: 'sourcemap',
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development'

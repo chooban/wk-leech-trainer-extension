@@ -30,10 +30,12 @@ export default async function srsProgress(settings: { [key: string]: any }) {
     progressionList.style.height = '100%'
 
     const categories = progressionList.querySelectorAll('li')
+    /* eslint-disable no-param-reassign */
     categories.forEach((category) => {
       category.style.height = '100%'
       category.style['vertical-align'] = 'top'
     })
+    /* eslint-enable no-param-reassign */
   })
 
   observer.observe(document.querySelector('.srs-progress'), {
@@ -42,16 +44,14 @@ export default async function srsProgress(settings: { [key: string]: any }) {
   })
 
   const apprenticeProgress = document.querySelector('.srs-progress > ul > li#apprentice')
-  const apprContainer =
-    apprenticeProgress.querySelector('[data-wk-ext=true]') === null
-      ? apprenticeProgress.insertBefore(createTargetNode(), apprenticeProgress.lastChild)
-      : apprenticeProgress.querySelector('[data-wk-ext=true]')
+  const apprContainer = apprenticeProgress.querySelector('[data-wk-ext=true]') === null
+    ? apprenticeProgress.insertBefore(createTargetNode(), apprenticeProgress.lastChild)
+    : apprenticeProgress.querySelector('[data-wk-ext=true]')
 
   const guruProgress = document.querySelector('.srs-progress > ul > li#guru')
-  const guruContainer =
-    guruProgress.querySelector('[data-wk-ext=true]') === null
-      ? guruProgress.insertBefore(createTargetNode(), guruProgress.lastChild)
-      : guruProgress.querySelector('[data-wk-ext=true]')
+  const guruContainer = guruProgress.querySelector('[data-wk-ext=true]') === null
+    ? guruProgress.insertBefore(createTargetNode(), guruProgress.lastChild)
+    : guruProgress.querySelector('[data-wk-ext=true]')
 
   render(<SrsProgressList api={api} levels={[1, 2, 3, 4]} />, apprContainer)
   render(<SrsProgressList api={api} levels={[5, 6]} />, guruContainer)

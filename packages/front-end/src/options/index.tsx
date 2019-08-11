@@ -1,15 +1,15 @@
 import { h, render } from 'preact'
 
 interface OptionInputProps {
-  key: string
-  configKey: string
-  label: string
-  active: boolean
+  key: string;
+  configKey: string;
+  label: string;
+  active: boolean;
 }
 const OptionInput = ({ configKey, active, label }: OptionInputProps) => (
   <div>
     <input
-      type='checkbox'
+      type="checkbox"
       id={configKey}
       value={configKey}
       name={configKey}

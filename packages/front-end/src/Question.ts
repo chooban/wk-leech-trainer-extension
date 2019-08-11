@@ -1,11 +1,15 @@
 class Question {
   public name: any
+
   public type: any
+
   public trainingType: any
+
   public correctAnswers: any
+
   public closeAnswers: any
 
-  constructor(data: any) {
+  public constructor(data: any) {
     this.name = data.name
     this.type = data.type
     this.trainingType = data.train_type

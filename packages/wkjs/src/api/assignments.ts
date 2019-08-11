@@ -1,15 +1,9 @@
 import axios from 'axios'
 
 import { AssignmentResponse, WanikaniCollectionResponse } from '../types'
-import { Assignment as ExtAssignment } from '../types/external/'
+import { Assignment as ExtAssignment } from '../types/external'
 
 const defaultStages = [1, 2, 3, 4, 5, 6]
-
-const assignments = async (apiKey: string, srsStages = defaultStages): Promise<ExtAssignment[]> => {
-  const url = `https://api.wanikani.com/v2/assignments?srs_stages=${srsStages.join(',')}`
-  return getAssignments(url, apiKey)
-    .then((as) => as.map((a) => ({ id: a.id, ...a.data })))
-}
 
 async function getAssignments(url: string, apiKey: string): Promise<AssignmentResponse[]> {
   const headers = {
@@ -30,4 +24,11 @@ async function getAssignments(url: string, apiKey: string): Promise<AssignmentRe
   }
   return rawAssignments
 }
+
+const assignments = async (apiKey: string, srsStages = defaultStages): Promise<ExtAssignment[]> => {
+  const url = `https://api.wanikani.com/v2/assignments?srs_stages=${srsStages.join(',')}`
+  return getAssignments(url, apiKey)
+    .then((as) => as.map((a) => ({ id: a.id, ...a.data })))
+}
+
 export { assignments }

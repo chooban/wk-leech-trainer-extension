@@ -9,7 +9,7 @@
     "api": "json-server -c api/config.json api/db.json",
     "build": "NODE_ENV=production webpack --display-error-details --progress --colors",
     "build:watch": "webpack --watch --display-error-details --progress --colors",
-    "style": "eslint 'src/**/*.{js,jsx}'; tslint 'src/**/*.{ts,tsx}'"
+    "style": "eslint 'src/**'"
   },
   "dependencies": {
     "@chooban/leeches": "1.0.0",
@@ -34,6 +34,8 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/runtime": "^7.5.5",
     "@types/chrome": "^0.0.88",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
     "babel-loader": "^8.0.6",
     "copy-webpack-plugin": "5.0.4",
     "eslint": "^6.1.0",
@@ -41,15 +43,14 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
-    "raw-loader": "^3.1.0",
     "ts-loader": "^6.0.4",
-    "tslint": "^5.18.0",
-    "typescript": "^3.5.3",
-    "typescript-eslint-parser": "^22.0.0",
     "web-ext-types": "^3.2.1",
     "webpack": "^4.39.1",
     "webpack-bundle-analyzer": "^3.4.1",
     "webpack-cli": "^3.3.6",
     "write-file-webpack-plugin": "^4.5.1"
+  },
+  "peerDependencies": {
+    "typescript": "^3.5.3"
   }
 }
