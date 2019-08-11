@@ -1,5 +1,11 @@
 class Question {
-  constructor(data) {
+  public name: any
+  public type: any
+  public trainingType: any
+  public correctAnswers: any
+  public closeAnswers: any
+
+  constructor(data: any) {
     this.name = data.name
     this.type = data.type
     this.trainingType = data.train_type
@@ -8,6 +14,4 @@ class Question {
   }
 }
 
-const factory = (data) => new Question(data)
-
-export default factory
+export { Question }

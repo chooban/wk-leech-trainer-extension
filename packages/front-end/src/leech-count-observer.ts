@@ -1,4 +1,4 @@
-const leechCount = (node, listener) => (mutations) => {
+const leechCount = (node: Node, listener: EventListenerOrEventListenerObject) => (mutations) => {
   const mutation = mutations[0]
   const count = Number(mutation.target.innerText)
 
@@ -9,4 +9,4 @@ const leechCount = (node, listener) => (mutations) => {
   }
 }
 
-export default leechCount
+export { leechCount }
