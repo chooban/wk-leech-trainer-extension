@@ -8,7 +8,7 @@ module.exports = {
     leech: './src/index.ts',
     background: './src/background.ts',
     'leeches-background': './src/leeches-background.ts',
-    'options/index': './src/options/index.jsx'
+    'options/index': './src/options/index.tsx'
   },
   output: {
     path: path.resolve(__dirname, '..', '..', 'dist/'),
