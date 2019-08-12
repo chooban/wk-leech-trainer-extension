@@ -16,5 +16,8 @@
   },
   "peerDependencies": {
     "typescript": "^3.5.0"
+  },
+  "devDependencies": {
+    "@types/lodash.groupby": "^4.6.6"
   }
 }
