@@ -3,8 +3,8 @@ import { h } from 'preact'
 import { useEffect, useState } from 'preact/hooks'
 
 interface ISrsProgressProps {
-  api: WkAPI;
-  levels: number[];
+  api: WkAPI
+  levels: number[]
 }
 
 const SrsProgressList = ({ api, levels }: ISrsProgressProps) => {
@@ -26,10 +26,7 @@ const SrsProgressList = ({ api, levels }: ISrsProgressProps) => {
     },
   }
   return (
-    <div
-      data-wk-ext
-      style={styles.outer}
-    >
+    <div data-wk-ext style={styles.outer}>
       {levelCounts.length > 0 ? levelCounts.join(' / ') : '--'}
     </div>
   )

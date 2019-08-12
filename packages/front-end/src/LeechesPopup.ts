@@ -29,7 +29,8 @@ class Popup {
   public constructor() {
     this.quizPopupNode = document.body.appendChild(makeElement(dom))
     this.abortNode = this.quizPopupNode.appendChild(makeElement('<div class="ss_quiz_abort hidden"/>'))
-    this.onHide = () => { // no-op
+    this.onHide = () => {
+      // no-op
     }
     this.quiz = undefined
   }
@@ -41,8 +42,7 @@ class Popup {
   public show(lessons) {
     this.quizPopupNode.classList.remove('hidden')
     this.abortNode.classList.remove('hidden')
-    document.querySelectorAll('.navbar, #search, .dashboard, footer')
-      .forEach((el) => el.classList.add('ss_blur'))
+    document.querySelectorAll('.navbar, #search, .dashboard, footer').forEach((el) => el.classList.add('ss_blur'))
 
     const progressBar: HTMLElement = document.querySelector('.quiz-progress-bar')
     progressBar.style.width = '0%'
@@ -57,8 +57,7 @@ class Popup {
   public hide() {
     this.quizPopupNode.classList.add('hidden')
     this.abortNode.classList.add('hidden')
-    document.querySelectorAll('.navbar, #search, .dashboard, footer')
-      .forEach((el) => el.classList.remove('ss_blur'))
+    document.querySelectorAll('.navbar, #search, .dashboard, footer').forEach((el) => el.classList.remove('ss_blur'))
     this.onHide.apply(this)
   }
 }

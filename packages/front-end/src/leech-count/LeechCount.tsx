@@ -8,7 +8,7 @@ const createContainer = () => {
   return targetNode
 }
 
-const LeechBadge = ({ count }) => (
+const LeechBadge = ({ count }: { count: number }) => (
   // eslint-disable-next-line
   <a href="#">
     <span className="available_leeches">{count}</span>
@@ -26,9 +26,10 @@ const LeechCount = (settings: { [key: string]: any }) => {
     return
   }
 
-  const badgeContainer = existingBadge === null
-    ? document.querySelector('ul.navigation-shortcuts').appendChild(createContainer())
-    : existingBadge
+  const badgeContainer =
+    existingBadge === null
+      ? document.querySelector('ul.navigation-shortcuts').appendChild(createContainer())
+      : existingBadge
 
   render(<LeechBadge count={leechStore.leechCount()} />, badgeContainer)
 }

@@ -19,7 +19,8 @@
   ],
   "settings": {
     "react": {
-      "pragma": "h"
+      "pragma": "h",
+      "version": "detect"
     },
     "import/resolver": {
       "node": {
@@ -33,18 +34,21 @@
     }
   },
   "extends": [
-    "airbnb",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
   ],
   "rules": {
-    "max-len": "off",
-    "indent": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/member-delimiter-style": "off",
     "@typescript-eslint/indent": [
       "error",
       2
     ],
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/interface-name-prefix": "off",
+    "key-spacing": "off",
+    "max-len": "off",
+    "indent": "off",
     "comma-dangle": "off",
     "no-underscore-dangle": 0,
     "import/no-extraneous-dependencies": [
@@ -52,10 +56,6 @@
       {
         "devDependencies": true
       }
-    ],
-    "arrow-parens": [
-      "error",
-      "always"
     ],
     "import/prefer-default-export": "off",
     "class-methods-use-this": "off",
@@ -65,12 +65,7 @@
         "functions": false
       }
     ],
-    "semi": [
-      "error",
-      "never"
-    ],
     "react/react-in-jsx-scope": 0,
-    "react/prop-types": 0,
     "jsx-a11y/label-has-for": 0,
     "react/jsx-filename-extension": [
       1,
