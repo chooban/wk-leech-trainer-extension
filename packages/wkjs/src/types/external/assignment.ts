@@ -1,5 +1,5 @@
-import { Assignment as InternalAssignment } from '../assignment'
+import { WKAssignment } from '../assignment'
 
-export interface Assignment extends InternalAssignment {
+export interface Assignment extends WKAssignment {
   readonly id: number
 }

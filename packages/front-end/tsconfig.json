@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "module": "commonjs",
     "noImplicitAny": false,
     "removeComments": true,
@@ -8,12 +8,9 @@
     "sourceMap": false,
     "jsx": "react",
     "jsxFactory": "h",
-    "types": [
-      "@types/chrome",
-      "node"
-    ],
     "typeRoots": [
-      "node_modules/@types"
+      "../../node_modules/@types",
+      "../../node_modules/web-ext-types"
     ],
     "lib": [
       "es2017",

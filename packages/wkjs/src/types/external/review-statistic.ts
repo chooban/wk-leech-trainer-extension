@@ -1,5 +1,5 @@
-import { ReviewStatistic as InternalReviewStatistic } from '../reviewstatistics'
+import { WKReviewStatistic } from '../reviewstatistics'
 
-export interface ReviewStatistic extends InternalReviewStatistic {
-  readonly id: number
+export interface ReviewStatistic extends WKReviewStatistic {
+  id: number
 }

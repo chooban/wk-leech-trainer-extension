@@ -1,10 +1,10 @@
 import { WanikaniResourceResponse } from '.'
 
 // eslint-disable-next-line
-export interface ReviewStatisticSubject extends WanikaniResourceResponse<ReviewStatistic> {
+export interface WKReviewStatisticSubject extends WanikaniResourceResponse<WKReviewStatistic> {
 }
 
-export interface ReviewStatistic {
+export interface WKReviewStatistic {
   created_at: Date
   subject_id: number
   subject_type: string

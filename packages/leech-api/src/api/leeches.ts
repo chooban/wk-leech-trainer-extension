@@ -1,19 +1,18 @@
 import { ReviewStatistic, WanikaniAPI } from '@chooban/wkjs'
-import { ReviewStatisticWithScores } from '../types'
+import { ReviewStatisticWithScores } from '../types/'
 
-const meaningScore = (l: ReviewStatistic) => l.meaning_incorrect / l.meaning_current_streak ** 1.5
+const meaningScore = (l: ReviewStatistic) => +(l.meaning_incorrect / l.meaning_current_streak ** 1.5).toFixed(2)
 
-const readingScore = (l: ReviewStatistic) => l.reading_incorrect / l.reading_current_streak ** 1.5
+const readingScore = (l: ReviewStatistic) => +(l.reading_incorrect / l.reading_current_streak ** 1.5).toFixed(2)
 
-const extractLeechesFromStats = (data: ReviewStatistic[]): ReviewStatisticWithScores[] =>
-  data
-    .filter((a) => a.meaning_correct >= 4 && a.meaning_incorrect + a.meaning_correct !== 0)
-    .map((l) => ({ ...l, reading_score: readingScore(l), meaning_score: meaningScore(l) })) // eslint-disable-line
-    .filter((l) => l.reading_score > 1.0 || l.meaning_score > 1.0)
+// eslint-disable-next-line @typescript-eslint/camelcase
+const scores = (l: ReviewStatistic) => ({ reading_score: readingScore(l), meaning_score: meaningScore(l) })
 
-const leeches = async (wkApi: WanikaniAPI) => {
-  const stats = await wkApi.reviewStatistics()
-  return extractLeechesFromStats(stats)
+const leeches = async (wkApi: WanikaniAPI, leechScore = 1.0): Promise<ReviewStatisticWithScores[]> => {
+  return (await wkApi.reviewStatistics())
+    .filter((a) => a.meaning_correct >= 4)
+    .map((l) => ({ ...l, ...scores(l) }))
+    .filter((l) => l.reading_score > leechScore || l.meaning_score > leechScore)
 }
 
 export { leeches }

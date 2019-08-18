@@ -1,5 +1,5 @@
-import { Subject as InternalSubject } from '../subject'
+import { WKSubject } from '../subject'
 
-export interface Subject extends InternalSubject {
+export interface Subject extends WKSubject {
   readonly id: number
 }

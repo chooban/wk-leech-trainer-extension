@@ -1,11 +1,18 @@
 import { h, render } from 'preact'
 
+export enum OptionTypes {
+  SHOW_LEECH_COUNT = 'showLeechCount',
+  SHOW_SRS_STATS = 'showSrsStats',
+  SKIP_REVIEW_SUMMARY = 'skipReviewsSummary',
+}
+
 interface OptionInputProps {
   key: string
   configKey: string
   label: string
   active: boolean
 }
+
 const OptionInput = ({ configKey, active, label }: OptionInputProps) => (
   <div>
     <input
@@ -50,23 +57,23 @@ const Options = ({ options }: { options: Omit<OptionInputProps, 'key'>[] }) => (
 
 const options = [
   {
-    configKey: 'showLeechCount',
+    configKey: OptionTypes.SHOW_LEECH_COUNT,
     label: 'Show leech count',
     active: false,
   },
   {
-    configKey: 'showSrsStats',
+    configKey: OptionTypes.SHOW_SRS_STATS,
     label: 'Show SRS stats',
     active: false,
   },
   {
-    configKey: 'skipReviewsSummary',
+    configKey: OptionTypes.SKIP_REVIEW_SUMMARY,
     label: 'Skip reviews summary before reviews',
     active: false,
   },
 ]
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   const defaultOptions = options.reduce(
     (acc, opt) => ({
       ...acc,
@@ -75,12 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
     {},
   )
 
-  chrome.storage.sync.get(defaultOptions, (settings) => {
-    const opts = options.map((o) => ({
-      ...o,
-      active: settings[o.configKey],
-    }))
+  const settings = await browser.storage.sync.get(defaultOptions)
+  const opts = options.map((o) => ({
+    ...o,
+    active: settings[o.configKey],
+  }))
 
-    render(<Options options={opts} />, document.getElementById('app'))
-  })
+  render(<Options options={opts} />, document.getElementById('app'))
 })

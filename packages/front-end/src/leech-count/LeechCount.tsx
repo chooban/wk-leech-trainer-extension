@@ -1,6 +1,7 @@
 import { h, render } from 'preact'
 
 import * as leechStore from './leech-store'
+import { OptionTypes } from '../options'
 
 const createContainer = () => {
   const targetNode = document.createElement('li')
@@ -16,10 +17,11 @@ const LeechBadge = ({ count }: { count: number }) => (
   </a>
 )
 
-const LeechCount = (settings: { [key: string]: any }) => {
+const LeechCount = async () => {
+  const settings = await browser.storage.sync.get(OptionTypes.SHOW_LEECH_COUNT)
   const existingBadge: HTMLElement = document.querySelector('ul.navigation-shortcuts > li.navigation-shortcut--leeches')
 
-  if (!settings.showLeechCount) {
+  if (!settings[OptionTypes.SHOW_LEECH_COUNT]) {
     if (existingBadge) {
       existingBadge.remove()
     }

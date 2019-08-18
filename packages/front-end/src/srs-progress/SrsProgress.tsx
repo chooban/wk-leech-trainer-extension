@@ -4,9 +4,11 @@ import { h, render } from 'preact'
 import { getApiKey } from '../wk-account'
 import createTargetNode from './create-node'
 import { SrsProgressList } from './SrsProgressList'
+import { OptionTypes } from '../options'
 
-export default async function srsProgress(settings: { [key: string]: any }) {
-  if (!settings.showSrsStats) {
+export default async function srsProgress() {
+  const settings = await browser.storage.sync.get(OptionTypes.SHOW_SRS_STATS)
+  if (!settings[OptionTypes.SHOW_SRS_STATS]) {
     const progressNodes = document.querySelectorAll('.srs-progress [data-wk-ext=true]')
     if (progressNodes) {
       progressNodes.forEach((node) => node.remove())

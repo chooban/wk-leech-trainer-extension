@@ -1,38 +1,23 @@
+import Dexie from 'dexie'
 import { LeechesAPI } from '@chooban/leeches'
 import { getApiKey } from './wk-account'
 
-const DB_VERSION = 3
+const DB_VERSION = 1
 
 async function main() {
   chrome.runtime.sendMessage('retrievingLeeches')
 
   const key = await getApiKey()
   const api = LeechesAPI(key)
+  const leeches = await api.leeches()
 
-  try {
-    const leeches = await api.leeches()
-    console.log('Retrieved', leeches.length, 'leeches')
+  const db = new Dexie('leeches')
+  db.version(DB_VERSION).stores({
+    leeches: '&subject_id,reading_score,meaning_score',
+    subjects: '&id',
+  })
 
-    const dbRequest = indexedDB.open('wkleeches', DB_VERSION)
-
-    dbRequest.onerror = (e) => {
-      throw e
-    }
-
-    dbRequest.onupgradeneeded = (e) => {
-      console.log('Upgrade needed')
-    }
-
-    dbRequest.onsuccess = (e) => {
-      console.log('Got db connection')
-      const db: IDBDatabase = (e.target as any).result
-      db.createObjectStore('leeches', {
-        keyPath: 'subject_id',
-      })
-    }
-  } catch (e) {
-    console.error(e)
-  }
+  db.table('leeches').bulkPut(leeches)
 }
 
 main()

@@ -1,6 +1,6 @@
 import { WanikaniResourceResponse } from '.'
 
-export interface Assignment {
+export interface WKAssignment {
   readonly created_at: Date
   readonly subject_id: number
   readonly subject_type: string
@@ -19,5 +19,5 @@ export interface Assignment {
 }
 
 // eslint-disable-next-line
-export interface AssignmentResponse extends WanikaniResourceResponse<Assignment> {
+export interface WKAssignmentResponse extends WanikaniResourceResponse<WKAssignment> {
 }

@@ -1,4 +1,4 @@
-export interface Subject {
+export interface WKSubject {
   readonly auxiliary_meanings: AuxiliaryMeaning[]
   readonly characters: string
   readonly created_at: Date

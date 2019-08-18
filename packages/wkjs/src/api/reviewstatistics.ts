@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-import { ReviewStatistic as ExtReviewStatistic } from '../types/external'
+import { ReviewStatistic } from '../types/external'
 
-import { ReviewStatisticSubject, WanikaniCollectionResponse } from '../types'
+import { WKReviewStatisticSubject, WanikaniCollectionResponse } from '../types'
 
 const REVIEW_STATS_URL = 'https://api.wanikani.com/v2/review_statistics?subject_types=kanji,vocabulary&hidden=false'
 
-async function getReviewStatisticsRecursively(url: string, apiKey: string): Promise<ReviewStatisticSubject[]> {
+async function getReviewStatisticsRecursively(url: string, apiKey: string): Promise<WKReviewStatisticSubject[]> {
   const headers = {
     Authorization: `Bearer ${apiKey}`,
   }
@@ -18,7 +18,7 @@ async function getReviewStatisticsRecursively(url: string, apiKey: string): Prom
       }
       return response
     })
-    .then((r) => r.data)) as WanikaniCollectionResponse<ReviewStatisticSubject>
+    .then((r) => r.data)) as WanikaniCollectionResponse<WKReviewStatisticSubject>
 
   const leeches = [...page.data]
   if (page.pages.next_url) {
@@ -27,7 +27,7 @@ async function getReviewStatisticsRecursively(url: string, apiKey: string): Prom
   return leeches
 }
 
-const getReviewStatistics = async (apiKey: string): Promise<ExtReviewStatistic[]> =>
+const getReviewStatistics = async (apiKey: string): Promise<ReviewStatistic[]> =>
   getReviewStatisticsRecursively(REVIEW_STATS_URL, apiKey).then((rs) => rs.map((r) => ({ id: r.id, ...r.data })))
 
 export { getReviewStatistics }

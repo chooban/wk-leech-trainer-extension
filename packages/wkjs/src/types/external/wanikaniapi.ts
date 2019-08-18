@@ -1,5 +1,4 @@
-import { ReviewStatistic } from '../reviewstatistics'
-import { Assignment, Subject } from '.'
+import { Assignment, Subject, ReviewStatistic } from '.'
 
 export interface WanikaniAPI {
   assignments(stages?: number[]): Promise<Assignment[]>

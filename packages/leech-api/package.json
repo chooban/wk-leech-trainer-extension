@@ -8,16 +8,36 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc -w",
-    "style": "eslint 'src/**'"
+    "style": "eslint 'src/**'",
+    "test": "jest"
   },
   "dependencies": {
-    "@chooban/wkjs": "1.0.0",
-    "lodash.groupby": "^4.6.0"
+    "@chooban/wkjs": "1.0.0"
   },
   "peerDependencies": {
     "typescript": "^3.5.0"
   },
   "devDependencies": {
-    "@types/lodash.groupby": "^4.6.6"
+    "@fluffy-spoon/substitute": "^1.89.0",
+    "@types/jest": "^24.0.17",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.0.2"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   }
 }

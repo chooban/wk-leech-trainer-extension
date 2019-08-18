@@ -1,14 +1,14 @@
-import { Assignment, AssignmentResponse } from './assignment'
-import { ReviewStatistic, ReviewStatisticSubject } from './reviewstatistics'
-import { Subject } from './subject'
+import { WKAssignment, WKAssignmentResponse } from './assignment'
+import { WKReviewStatistic, WKReviewStatisticSubject } from './reviewstatistics'
+import { WKSubject } from './subject'
 import { WanikaniCollectionResponse, WanikaniResourceResponse } from './wanikaniresponse'
 
 export {
-  Assignment,
-  AssignmentResponse,
-  ReviewStatistic,
-  ReviewStatisticSubject,
-  Subject,
+  WKAssignment,
+  WKAssignmentResponse,
+  WKReviewStatistic,
+  WKReviewStatisticSubject,
+  WKSubject,
   WanikaniCollectionResponse,
   WanikaniResourceResponse,
 }
