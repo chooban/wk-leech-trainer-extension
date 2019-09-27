@@ -12,9 +12,9 @@ const LeechesAPI = (apiKey: string): API => {
 
   const api = {
     assignments: () => wkjs.assignments(),
-    leeches: () => leechesAPI(wkjs),
+    leeches: (leechScore?: number) => leechesAPI(wkjs, leechScore),
     progress: (stages?: number[]) => progress(wkjs, stages),
-    reviewStatistics: () => wkjs.reviewStatistics(),
+    reviewStatistics: (types: string[]) => wkjs.reviewStatistics(types),
     subject: (id: number) => wkjs.subject(id),
   }
 

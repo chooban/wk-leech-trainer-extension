@@ -2,7 +2,7 @@
   "name": "@chooban/wkjs",
   "version": "1.0.0",
   "description": "WaniKani API",
-  "main": "dist/index.js",
+  "main": "src/index.ts",
   "author": "Ross Hendry (rhendry@googlemail.com)",
   "license": "MIT",
   "scripts": {

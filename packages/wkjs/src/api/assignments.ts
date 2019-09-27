@@ -1,10 +1,10 @@
 import axios from 'axios'
-import { AssignmentResponse, WanikaniCollectionResponse } from '../types'
+import { WKAssignmentResponse, WanikaniCollectionResponse } from '../types'
 import { Assignment as ExtAssignment } from '../types/external'
 
 const defaultStages = [1, 2, 3, 4, 5, 6]
 
-async function getAssignments(url: string, apiKey: string): Promise<AssignmentResponse[]> {
+async function getAssignments(url: string, apiKey: string): Promise<WKAssignmentResponse[]> {
   const headers = {
     Authorization: `Bearer ${apiKey}`,
   }
@@ -16,7 +16,7 @@ async function getAssignments(url: string, apiKey: string): Promise<AssignmentRe
       }
       return response
     })
-    .then((r) => r.data)) as WanikaniCollectionResponse<AssignmentResponse>
+    .then((r) => r.data)) as WanikaniCollectionResponse<WKAssignmentResponse>
 
   const rawAssignments = [...page.data]
   if (page.pages.next_url) {

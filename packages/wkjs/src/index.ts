@@ -1,9 +1,11 @@
 import { assignments, reviewStatistics, subject } from './api'
 import { WanikaniAPI } from './types/external'
 
+const ALL_TYPES = ['radical', 'kanji', 'vocabulary']
+
 const wkjs = (apiKey: string): WanikaniAPI => ({
   assignments: (stages: number[]) => assignments(apiKey, stages),
-  reviewStatistics: () => reviewStatistics(apiKey),
+  reviewStatistics: (types = ALL_TYPES) => reviewStatistics(apiKey, types),
   subject: (id: number) => subject(apiKey, id),
 })
 

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { Subject as WKSubject, WanikaniResourceResponse } from '../types'
+import { WKSubject, WanikaniResourceResponse } from '../types'
 import { Subject } from '../types/external'
 
 const subject = async (apiKey: string, id: number): Promise<Subject> => {

@@ -1,12 +1,14 @@
 {
   "manifest_version": 2,
   "name": "WK Leech Trainer",
-  "version": "0.3",
+  "version": "0.4",
   "description": "Study those leeches! Squash 'em real good!",
   "permissions": [
     "webRequest",
     "*://www.wanikani.com/*",
-    "storage"
+    "storage",
+    "notifications",
+    "activeTab"
   ],
   "browser_action": {
     "browser_style": true,
@@ -22,6 +24,7 @@
   },
   "background": {
     "scripts": [
+      "browser-polyfill.js",
       "leeches-background.js",
       "background.js"
     ]

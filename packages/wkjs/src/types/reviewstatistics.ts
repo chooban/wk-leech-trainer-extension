@@ -7,7 +7,7 @@ export interface WKReviewStatisticSubject extends WanikaniResourceResponse<WKRev
 export interface WKReviewStatistic {
   created_at: Date
   subject_id: number
-  subject_type: string
+  subject_type: 'radical' | 'kanji' | 'vocabulary'
   meaning_correct: number
   meaning_incorrect: number
   meaning_max_streak: number

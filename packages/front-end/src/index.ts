@@ -6,7 +6,7 @@ function main() {
   LeechCount()
   srsProgress()
   // skipSummary(settings.skipReviewsSummary)
-  chrome.runtime.sendMessage('displayIcon')
+  browser.runtime.sendMessage('displayIcon')
 }
 
 browser.runtime.onMessage.addListener((request) => {
