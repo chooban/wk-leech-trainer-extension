@@ -11,11 +11,11 @@
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
-    "eslint-config-prettier": "^6.0.0",
-    "eslint-plugin-prettier": "^3.1.0",
+    "dotenv": "^8.1.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-prettier": "^3.1.1",
     "prettier": "^1.18.2",
-    "dotenv": "^8.0.0",
-    "typescript": "^3.5.3",
-    "wsrun": "^5.0.0"
+    "typescript": "^3.6.3",
+    "wsrun": "^5.0.2"
   }
 }
